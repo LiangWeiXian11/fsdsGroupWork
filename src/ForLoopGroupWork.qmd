@@ -98,12 +98,15 @@ host = 'https://orca.casa.ucl.ac.uk'
 path = '~jreades/data'
 file = '2022-09-10-listings.csv.gz'
 url  = f'{host}/{path}/{file}'
+local_url = f'../data/{file}'
+
 
 if os.path.exists(file):
   df = pd.read_csv(file, compression='gzip', low_memory=False)
 else: 
   df = pd.read_csv(url, compression='gzip', low_memory=False)
-  df.to_csv(file)
+    # 下载该文件到本地 的data文件夹 -- lwx
+  df.to_csv(local_url)
 ```
 
 ## 1. Who collected the data?
