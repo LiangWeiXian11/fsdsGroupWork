@@ -50,7 +50,7 @@ jupyter:
 
 ## Declaration of Authorship {.unnumbered .unlisted}
 
-We, [insert your group's names], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
+We, [For loop], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
 Date:
 
@@ -125,6 +125,9 @@ A parenthetical citation: There are many ways to research Airbnb [see, for examp
 
 ::: {.duedate}
 
+* Use the distribution of scenic spots and wards boundary to select non-tourism-oriented wards
+
+
 ( 4 points; Answer due Week 7 )
 
 :::
@@ -142,6 +145,9 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
+* Open Street Map API
+* InsideAirbnb
+
 ( 5 points; Answer due Week 8 )
 
 :::
@@ -150,6 +156,8 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
+* Since the occupancy rate data are derived from derivation rather than direct statistical data, the accuracy of the data will be affected to some extent.
+
 ( 11 points; Answer due Week 9 )
 
 :::
@@ -157,6 +165,8 @@ ax.set_xlim([0,500]);
 ## 5. What ethical considerations does the use of this data raise? 
 
 ::: {.duedate}
+
+* The data related to the property evaluation may involve the personal privacy of the host
 
 ( 18 points; Answer due {{< var assess.group-date >}} )
 
