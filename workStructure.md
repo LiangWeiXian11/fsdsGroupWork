@@ -1,9 +1,9 @@
 # coding Workflow
 
 ## path 1 economy 
-rental per night (column) --> diff owner's income --> economy by areas
+rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
 
-### path 1.1 find local owner 
+### path 1.1 find local owner --diff Hosts
 (possible solution : number of house they have)
 
 
@@ -13,3 +13,8 @@ number of tourism destination + boundary in london --> by number of tourism dest
 
 ## path 3 output
 path 1 (economy -- numeric) + path 3 (non-areas) -- > Visualization map  
+
+
+algorithm 1
+
+algorithm 2

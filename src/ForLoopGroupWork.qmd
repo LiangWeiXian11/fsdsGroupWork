@@ -176,6 +176,12 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
+* Hosts 房东类型 -- 聚类（中介&当地）
+  地图
+* Listing 房源类型 -- 描述性统计--（暂定）
+  图表
+
+
 ( 15 points; Answer due {{< var assess.group-date >}} )
 
 :::
@@ -195,4 +201,3 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
-
