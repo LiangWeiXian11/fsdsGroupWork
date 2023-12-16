@@ -187,12 +187,13 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
-## 经济计算
-
+## 计算当地经济
+(定量计算当地经济--local economy mutiplier )
 
 ( 45 points; Answer due {{< var assess.group-date >}} )
 
-## 聚类 景区
+## 旅游区聚类 tourism areas
+（根据每个旅游区的旅游景点数量，划分旅游区和非旅游区）
 
 :::
 
