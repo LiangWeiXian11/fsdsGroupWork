@@ -145,8 +145,9 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
-* Open Street Map API
+* Open Street Map API (tourism points)
 * InsideAirbnb
+* GIS statistical-gis-boundaries-london
 
 ( 5 points; Answer due Week 8 )
 
