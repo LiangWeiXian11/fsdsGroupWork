@@ -177,9 +177,13 @@ ax.set_xlim([0,500]);
 ::: {.duedate}
 
 * Hosts 房东类型 -- 聚类（中介&当地）
+
   地图
-* Listing 房源类型 -- 描述性统计--（暂定）
+*  (optional) Listing 房源类型 -- 描述性统计--（暂定）
+  
   图表
+
+* airbnb 的空间分布 （聚集或分散）
 
 
 ( 15 points; Answer due {{< var assess.group-date >}} )
@@ -190,7 +194,12 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
+## 经济计算
+
+
 ( 45 points; Answer due {{< var assess.group-date >}} )
+
+## 聚类 景区
 
 :::
 
