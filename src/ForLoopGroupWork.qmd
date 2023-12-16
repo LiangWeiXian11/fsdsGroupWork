@@ -172,6 +172,9 @@ ax.set_xlim([0,500]);
 * Hosts 房东类型 -- 聚类（中介&当地）
 
   地图
+### path 1.1 find local owner --diff Hosts
+(possible solution : number of house they have) {cluster 1}
+
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
   
   图表
@@ -187,12 +190,15 @@ ax.set_xlim([0,500]);
 
 ::: {.duedate}
 
-## 计算当地经济
+### 计算当地经济  path 1 economy 
 (定量计算当地经济--local economy mutiplier )
+rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
 
 ( 45 points; Answer due {{< var assess.group-date >}} )
 
-## 旅游区聚类 tourism areas
+
+### 旅游区聚类  path 2 tourism areas
+number of tourism destination + boundary in london --{cluster 2}--> by number of tourism destination by per areas --> 
 （根据每个旅游区的旅游景点数量，划分旅游区和非旅游区）
 
 :::
