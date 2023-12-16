@@ -154,13 +154,6 @@ ax.set_xlim([0,500]);
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
-::: {.duedate}
-
-* Since the occupancy rate data are derived from derivation rather than direct statistical data, the accuracy of the data will be affected to some extent.
-
-( 11 points; Answer due Week 9 )
-
-:::
 
 ## 5. What ethical considerations does the use of this data raise? 
 
