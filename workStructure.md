@@ -2,6 +2,7 @@
 
 ## path 1 economy 
 rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
+（计算airbnb对当地的经济影响（根据borough划分））
 
 ### path 1.1 find local owner --diff Hosts
 (possible solution : number of house they have) {cluster 1}
