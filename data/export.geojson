@@ -1,0 +1,3172 @@
+{
+  "type": "FeatureCollection",
+  "generator": "overpass-turbo",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL.",
+  "timestamp": "2023-12-16T11:04:30Z",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/26355981",
+        "name": "Site of original Epsom Salts well",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2902488,
+          51.3270878
+        ]
+      },
+      "id": "node/26355981"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/26559743",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1452455,
+          51.3952047
+        ]
+      },
+      "id": "node/26559743"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/26563318",
+        "name": "Epsom Downs Racecourse",
+        "tourism": "attraction",
+        "wikidata": "Q5383997",
+        "wikipedia": "en:Epsom Downs Racecourse"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2526878,
+          51.3099991
+        ]
+      },
+      "id": "node/26563318"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/252602371",
+        "addr:street": "Tooley Street",
+        "layer": "-1",
+        "level": "0",
+        "name": "London Bridge Experience",
+        "opening_hours": "Mo-Fr 10:30-17:00; Sa-Su 10:00-18:00",
+        "operator": "London Bridge Experience",
+        "phone": "+44 20 7403 6333",
+        "tourism": "attraction",
+        "wikidata": "Q7748032",
+        "wikipedia": "en:The London Bridge Experience"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0882641,
+          51.5063878
+        ]
+      },
+      "id": "node/252602371"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/254532864",
+        "created_by": "Potlatch 0.8",
+        "name": "Dartford Heath",
+        "natural": "heath",
+        "toilets:wheelchair": "no",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1830395,
+          51.4327882
+        ]
+      },
+      "id": "node/254532864"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/256490027",
+        "addr:postcode": "DA4 0JA",
+        "addr:street": "Lullingstone Lane",
+        "fhrs:id": "266698",
+        "historic": "archaeological_site",
+        "name": "Lullingstone Roman Villa",
+        "source:addr": "FHRS Open Data",
+        "tourism": "attraction",
+        "wikidata": "Q1877182",
+        "wikipedia": "en:Lullingstone Roman Villa"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1964219,
+          51.3640151
+        ]
+      },
+      "id": "node/256490027"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/256491445",
+        "created_by": "Potlatch 0.8a",
+        "name": "Lullingstone Country Park",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1902348,
+          51.3530752
+        ]
+      },
+      "id": "node/256491445"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/269236138",
+        "name": "Little Holland House",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1706494,
+          51.3553025
+        ]
+      },
+      "id": "node/269236138"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/293221901",
+        "name": "Hall Place and Gardens",
+        "tourism": "attraction",
+        "wikidata": "Q5642615"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1602259,
+          51.448185
+        ]
+      },
+      "id": "node/293221901"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/312166134",
+        "name": "Paintballing",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4296177,
+          51.2994537
+        ]
+      },
+      "id": "node/312166134"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/320446994",
+        "created_by": "Potlatch 0.10f",
+        "description": "Sandpit",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1897429,
+          51.5660122
+        ]
+      },
+      "id": "node/320446994"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/321506811",
+        "name": "St Pancras Lock",
+        "tourism": "attraction",
+        "wikidata": "Q7595038",
+        "wikipedia": "en:St Pancras Lock"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.127826,
+          51.5362114
+        ]
+      },
+      "id": "node/321506811"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/331101736",
+        "addr:city": "London",
+        "addr:housename": "Nags Head Covered Market",
+        "addr:housenumber": "22",
+        "addr:postcode": "N7 6AG",
+        "addr:street": "Seven Sisters Road",
+        "addr:suburb": "Holloway",
+        "alt_name": "Nag's Head Market",
+        "amenity": "marketplace",
+        "name": "Nags Head Market",
+        "source:addr": "FHRS Open Data",
+        "tourism": "attraction",
+        "wikidata": "Q6958250",
+        "wikipedia": "en:Nag's Head Market"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1181116,
+          51.5581844
+        ]
+      },
+      "id": "node/331101736"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/360016753",
+        "name": "Thames Chase Visitor Centre",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.2826033,
+          51.5519566
+        ]
+      },
+      "id": "node/360016753"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/371519726",
+        "name": "Sunday Market",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0723316,
+          51.5234859
+        ]
+      },
+      "id": "node/371519726"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/441948421",
+        "name": "South Bank Book Market",
+        "tourism": "attraction",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.115794,
+          51.5073583
+        ]
+      },
+      "id": "node/441948421"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/506327773",
+        "name": "London Duck Tours",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1159222,
+          51.5027478
+        ]
+      },
+      "id": "node/506327773"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/537861758",
+        "attraction": "animal",
+        "name": "Golden-headed lion tamarin",
+        "name:ru": "золотистый львиный тамарин",
+        "species": "Leontopithicus chrysomelas",
+        "tourism": "attraction",
+        "zoo": "enclosure"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1519514,
+          51.5344338
+        ]
+      },
+      "id": "node/537861758"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/560040794",
+        "addr:city": "London",
+        "addr:country": "GB",
+        "addr:county": "Hampshire",
+        "addr:place": "Camden Town",
+        "addr:postcode": "NW1 8AH",
+        "addr:street": "The Stables Market",
+        "name": "Cyberdog",
+        "opening_hours": "Mo-Th 11:00-19:30; Fr 11:00-20:00; Sa, Su 10:00-20:00",
+        "operator": "Cyberdog UK Ltd",
+        "phone": "+44 20 7482 2842",
+        "shop": "clothes",
+        "tourism": "attraction",
+        "website": "https://cyberdog.net/",
+        "wheelchair": "limited",
+        "wikidata": "Q5197771"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1473387,
+          51.5422262
+        ]
+      },
+      "id": "node/560040794"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/635975585",
+        "name": "London Bridge Experience",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0867003,
+          51.5059746
+        ]
+      },
+      "id": "node/635975585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/691033121",
+        "attraction": "animal",
+        "name": "Emus",
+        "operator": "London Zoo",
+        "species:wikidata": "Q93208",
+        "species:wikipedia": "en:Emu",
+        "tourism": "attraction",
+        "zoo": "enclosure"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1568989,
+          51.534874
+        ]
+      },
+      "id": "node/691033121"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/691033122",
+        "attraction": "animal",
+        "name": "Wallabies",
+        "operator": "London Zoo",
+        "species:wikidata": "Q623169",
+        "species:wikipedia": "en:Wallaby",
+        "tourism": "attraction",
+        "zoo": "enclosure"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1562863,
+          51.535064
+        ]
+      },
+      "id": "node/691033122"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/693728457",
+        "name": "Chislehurst Caves",
+        "tourism": "attraction",
+        "wikidata": "Q5102117",
+        "wikipedia": "en:Chislehurst Caves"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0578495,
+          51.4073174
+        ]
+      },
+      "id": "node/693728457"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/696448272",
+        "name": "House of Commons",
+        "name:de": "Unterhaus",
+        "name:en": "House of Commons",
+        "name:fr": "Chambre des Communes",
+        "name:zh": "下议院",
+        "opening_hours": "Mo-Sa 09:00-17:00",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1246172,
+          51.4999176
+        ]
+      },
+      "id": "node/696448272"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/696448275",
+        "name": "House of Lords",
+        "name:de": "Oberhaus",
+        "name:en": "House of Lords",
+        "name:fr": "Chambre des Lords",
+        "name:zh": "上议院",
+        "tourism": "attraction",
+        "wikidata": "Q11007"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1248415,
+          51.4988202
+        ]
+      },
+      "id": "node/696448275"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/762656746",
+        "name": "Goose's Foot",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2598771,
+          51.4846327
+        ]
+      },
+      "id": "node/762656746"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/778690379",
+        "name": "Exedra",
+        "name:ru": "Экзедра",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2599498,
+          51.4844417
+        ]
+      },
+      "id": "node/778690379"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1016122582",
+        "name": "Cassiobury Park Station",
+        "public_transport": "no",
+        "railway": "station",
+        "source": "Bing",
+        "tourism": "attraction",
+        "usage": "tourism"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.423798,
+          51.6622838
+        ]
+      },
+      "id": "node/1016122582"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1422415861",
+        "designation": "National Trust",
+        "historic": "archaeological_site",
+        "name": "Roman Bath",
+        "tourism": "attraction",
+        "wikidata": "Q7361585"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.115674,
+          51.511658
+        ]
+      },
+      "id": "node/1422415861"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1587598802",
+        "name": "Fire and Iron Gallery",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3397502,
+          51.3144816
+        ]
+      },
+      "id": "node/1587598802"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1607349303",
+        "historic": "aircraft",
+        "name": "De Havilland Heron",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1167858,
+          51.3563639
+        ]
+      },
+      "id": "node/1607349303"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1748657012",
+        "aircraft:type": "airliner",
+        "historic": "aircraft",
+        "name": "Concorde G-BOAB",
+        "operator": "British Airways",
+        "tourism": "attraction",
+        "wikidata": "Q41248535"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.432978,
+          51.4669487
+        ]
+      },
+      "id": "node/1748657012"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1802652184",
+        "addr:street": "Bridge Street",
+        "amenity": "clock",
+        "display": "analog",
+        "faces": "4",
+        "historic": "technical_monument",
+        "name": "Big Ben",
+        "name:be-tarask": "Біг-Бэн",
+        "name:ja": "ビッグベン",
+        "name:ko": "빅벤(시계이름),엘리자베스타워",
+        "name:sk": "Big Ben",
+        "name:zh": "大本钟",
+        "support": "tower",
+        "tourism": "attraction",
+        "visibility": "area",
+        "wheelchair": "no",
+        "wheelchair:description": "Open Friday - 334 steps. Lift will be installed during 2017. (BBC news 17th December 2016)",
+        "wikidata": "Q41225",
+        "wikipedia": "en:Big Ben"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1245721,
+          51.5007042
+        ]
+      },
+      "id": "node/1802652184"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1853112649",
+        "man_made": "water_well",
+        "name": "Jacob's Well",
+        "source": "survey",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0690013,
+          51.5727753
+        ]
+      },
+      "id": "node/1853112649"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1934455440",
+        "addr:city": "Croydon",
+        "addr:postcode": "CR0 5DY",
+        "addr:street": "Postmill Close",
+        "historic": "building",
+        "man_made": "windmill",
+        "name": "Shirley Windmill",
+        "operator": "The Friends of Shirley Windmill",
+        "tourism": "attraction",
+        "website": "https://www.shirleywindmill.org.uk/",
+        "wikidata": "Q7498884"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0548514,
+          51.3688863
+        ]
+      },
+      "id": "node/1934455440"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/1937435160",
+        "name": "New Scotland Yard",
+        "navigation": "sign",
+        "rotating": "yes",
+        "title": "New Scotland Yard",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1239626,
+          51.5029707
+        ]
+      },
+      "id": "node/1937435160"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2079674503",
+        "description": "primary name tag is for English name only",
+        "historic": "monument",
+        "name": "Tower Bridge",
+        "name:en": "Tower Bridge",
+        "name:gan": "塔橋",
+        "name:hi": "टावर ब्रिज",
+        "name:ja": "ロンドン橋",
+        "name:ko": "타워 브리지",
+        "name:ru": "Тауэрский мост",
+        "name:zh": "塔桥",
+        "name:zh-Hans": "塔桥",
+        "name:zh-Hant": "塔橋",
+        "seamark:bridge:category": "opening",
+        "seamark:bridge:clearance_height_closed": "15.6",
+        "seamark:bridge:clearance_height_open": "49.6",
+        "seamark:name": "Tower Bridge",
+        "seamark:type": "bridge",
+        "tourism": "attraction",
+        "wheelchair": "yes",
+        "wikidata": "Q83125",
+        "wikipedia": "en:Tower Bridge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0753662,
+          51.5055166
+        ]
+      },
+      "id": "node/2079674503"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2250396691",
+        "name": "The London Dungeon",
+        "opening_hours": "10:00-17:00; Th 11:00-17:00; Sa 10:00-18:00",
+        "tourism": "attraction",
+        "wheelchair": "limited",
+        "wheelchair:description": "Mostly accessible but some parts are not as good as different routes are required and some rides require walking.",
+        "wikidata": "Q1513107",
+        "wikipedia": "en:London Dungeon"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1192189,
+          51.5026002
+        ]
+      },
+      "id": "node/2250396691"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2404286600",
+        "check_date": "2023-08-29",
+        "contact:phone": "+44 20 7935 4484",
+        "contact:website": "http://www.beatlesstorelondon.co.uk",
+        "description": "Beatles Merchandise and Memorabilia",
+        "name": "London Beatles Store",
+        "opening_hours": "10:00-18:30; Dec 25 off",
+        "shop": "gift",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1584201,
+          51.5236013
+        ]
+      },
+      "id": "node/2404286600"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2497814874",
+        "name": "Jack The Ripper Murder Site: Mary Anne Nichols",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0608064,
+          51.519714
+        ]
+      },
+      "id": "node/2497814874"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2497824565",
+        "name": "Jack The Ripper Murder Site: Mary Kelly (13 Miller's Court)",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0749624,
+          51.5186534
+        ]
+      },
+      "id": "node/2497824565"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2497830805",
+        "name": "Jack The Ripper Murder Site: Elizabeth Stride",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0656356,
+          51.5136329
+        ]
+      },
+      "id": "node/2497830805"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2497831899",
+        "name": "Jack The Ripper Murder Site: Annie Chapman",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0727626,
+          51.520371
+        ]
+      },
+      "id": "node/2497831899"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2709945660",
+        "name": "Bromley Millennium Rock",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0748298,
+          51.3518108
+        ]
+      },
+      "id": "node/2709945660"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2841921180",
+        "addr:city": "London",
+        "addr:postcode": "WC2N 6NU",
+        "addr:street": "Victoria Embankment",
+        "name": "Thames Rib Experience",
+        "tourism": "attraction",
+        "website": "https://www.thamesribexperience.com/index.php"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1214769,
+          51.5069283
+        ]
+      },
+      "id": "node/2841921180"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/2978897656",
+        "name": "Crystal Palace Subway",
+        "tourism": "attraction",
+        "website": "http://www.cpsubway.org.uk"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0772253,
+          51.4220538
+        ]
+      },
+      "id": "node/2978897656"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3060887211",
+        "addr:city": "London",
+        "addr:housename": "The Shard",
+        "addr:housenumber": "32",
+        "addr:postcode": "SE1 9SG",
+        "addr:street": "London Bridge Street",
+        "alt_name": "The View from The Shard",
+        "level": "69;72",
+        "name": "View from the Shard",
+        "note": "View from the Shard is stated as the highest vantage point from any building in Western Europe, 244m. Enclosed viewing on level 69, open on level 72 (top of publicly open part of building)",
+        "phone": "+44 20 3102 3930",
+        "toilets:wheelchair": "yes",
+        "tourism": "attraction",
+        "website": "https://www.theviewfromtheshard.com",
+        "wheelchair": "yes",
+        "wikidata": "Q17062261",
+        "wikipedia": "en:The View from The Shard"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0864092,
+          51.5044869
+        ]
+      },
+      "id": "node/3060887211"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3122095385",
+        "addr:city": "Leavesden",
+        "addr:housename": "Warner Bros. Studio Tour London",
+        "addr:postcode": "WD25 7LR",
+        "addr:street": "Studio Tour Drive",
+        "name": "Warner Bros. Studio Tour London - The Making of Harry Potter",
+        "phone": "+44 845 084 0900",
+        "tourism": "attraction",
+        "website": "https://www.wbstudiotour.co.uk/",
+        "wheelchair": "yes",
+        "wikidata": "Q27924395",
+        "wikipedia": "en:Warner Bros. Studio Tour London – The Making of Harry Potter"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4177057,
+          51.6888588
+        ]
+      },
+      "id": "node/3122095385"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3397886782",
+        "addr:city": "London",
+        "addr:housenumber": "1a",
+        "addr:postcode": "WC1R 4AX",
+        "addr:street": "Princeton Street",
+        "leisure": "amusement_arcade",
+        "name": "Novelty Automation",
+        "opening_hours": "Tu,We,Fr,Sa 11:00-18:00; Th 12:00-20:00; Su 12:00-18:00",
+        "operator": "Tim Hunkin",
+        "tourism": "attraction",
+        "website": "https://novelty-automation.com/",
+        "wikidata": "Q55098971",
+        "wikipedia": "en:Novelty Automation"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1165252,
+          51.5197601
+        ]
+      },
+      "id": "node/3397886782"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3432300477",
+        "name": "The Grotto",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0463878,
+          51.5683848
+        ]
+      },
+      "id": "node/3432300477"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3453930443",
+        "name": "Crown Jewels",
+        "tourism": "attraction",
+        "website": "https://www.hrp.org.uk/tower-of-london/whats-on/the-crown-jewels/",
+        "wikidata": "Q918264",
+        "wikipedia": "en:Crown Jewels of the United Kingdom"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0758418,
+          51.5085864
+        ]
+      },
+      "id": "node/3453930443"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3608653828",
+        "addr:city": "London",
+        "addr:housename": "Camden Market",
+        "addr:housenumber": "56-56",
+        "addr:postcode": "NW1 8AF",
+        "addr:street": "Camden Lock Place",
+        "amenity": "marketplace",
+        "email": "info@camdenmarket.com",
+        "name": "Camden Market",
+        "name:zh": "卡姆登市集",
+        "opening_hours": "10:00-18:00",
+        "phone": "+44 20 3763 9999",
+        "tourism": "attraction",
+        "website": "https://www.camdenmarket.com/",
+        "wikidata": "Q1028420",
+        "wikipedia": "en:Camden Market"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1471949,
+          51.5423781
+        ]
+      },
+      "id": "node/3608653828"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3701919583",
+        "3dmr": "2",
+        "addr:housenumber": "236",
+        "addr:street": "Earl's Court Road",
+        "alt_name": "Tardis",
+        "direction": "315",
+        "name": "Police Box",
+        "note": "The only Doctor Who Tardis in the UK?",
+        "telephone_kiosk": "police",
+        "tourism": "attraction",
+        "wikimedia_commons": "File:Police Box \"Tardis\".jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1929583,
+          51.492124
+        ]
+      },
+      "id": "node/3701919583"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3745441972",
+        "barrier": "gate",
+        "name": "Traitor's Gate",
+        "tourism": "attraction",
+        "wikidata": "Q7833046"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0769914,
+          51.5073934
+        ]
+      },
+      "id": "node/3745441972"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3745559379",
+        "name": "Eel Trap",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5098501,
+          51.3076811
+        ]
+      },
+      "id": "node/3745559379"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3747143401",
+        "historic": "memorial",
+        "inscription": "William Bligh (1754–1817) \"Commander of the \"Bounty\" lived here",
+        "memorial": "blue_plaque",
+        "name": "William Bligh",
+        "openplaques:id": "372",
+        "subject:wikidata": "Q294147",
+        "subject:wikipedia": "en:William Bligh",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1107461,
+          51.496784
+        ]
+      },
+      "id": "node/3747143401"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/3932310842",
+        "addr:city": "London",
+        "addr:street": "Brick Lane",
+        "name": "Brick Lane",
+        "tourism": "attraction",
+        "wikidata": "Q1194528",
+        "wikipedia": "en:Brick Lane"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0706571,
+          51.5174584
+        ]
+      },
+      "id": "node/3932310842"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4008243799",
+        "addr:city": "London",
+        "addr:housename": "Highgate Cemetery",
+        "addr:postcode": "N6 6PJ",
+        "addr:street": "Swain’s Lane",
+        "name": "Highgate Cemetery Tours",
+        "operator": "Friends of Highgate Cemetery Trust. Registered Charity No. 1058392",
+        "phone": "+44 20 8340 1834",
+        "tourism": "attraction",
+        "website": "https://highgatecemetery.org/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1464251,
+          51.5668649
+        ]
+      },
+      "id": "node/4008243799"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4173548736",
+        "name": "Folly Wall",
+        "tourism": "attraction",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0788291,
+          51.5365684
+        ]
+      },
+      "id": "node/4173548736"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4189248446",
+        "man_made": "arch",
+        "name": "Chinatown Gate",
+        "note": "Chinese style ornamental/symbolic arch over road. It is not a sally port as previously mistagged.",
+        "tourism": "attraction",
+        "wikimedia_commons": "File:Chinatown_-_geograph.org.uk_-_3080634.jpg"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1318175,
+          51.5109933
+        ]
+      },
+      "id": "node/4189248446"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4213420877",
+        "name": "Zufari: Ride Into Africa",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3190434,
+          51.3497614
+        ]
+      },
+      "id": "node/4213420877"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4213490018",
+        "name": "Explorer Glamping",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3219299,
+          51.3481026
+        ]
+      },
+      "id": "node/4213490018"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4213593183",
+        "name": "Adventure Point",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3167679,
+          51.3485264
+        ]
+      },
+      "id": "node/4213593183"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4213593184",
+        "attraction": "roller_coaster",
+        "name": "Vampire",
+        "tourism": "attraction",
+        "wikidata": "Q2509682"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3164186,
+          51.3471156
+        ]
+      },
+      "id": "node/4213593184"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4249500590",
+        "attraction": "animal",
+        "name": "Kangaroos",
+        "operator": "London Zoo",
+        "species:wikidata": "Q5070208",
+        "species:wikipedia": "en:Kangaroo",
+        "tourism": "attraction",
+        "zoo": "enclosure"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1565686,
+          51.5348487
+        ]
+      },
+      "id": "node/4249500590"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4291579190",
+        "name": "Chinatown",
+        "name:en": "China Town",
+        "name:zh": "唐人街",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1311021,
+          51.5117463
+        ]
+      },
+      "id": "node/4291579190"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4358645294",
+        "addr:housenumber": "129",
+        "addr:postcode": "RM11 3AR",
+        "addr:street": "Wingletye Lane",
+        "name": "Emerson Court",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.235936,
+          51.5664502
+        ]
+      },
+      "id": "node/4358645294"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4382359536",
+        "attraction": "distorting_mirror",
+        "noname": "yes",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0071188,
+          51.5355637
+        ]
+      },
+      "id": "node/4382359536"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4596880090",
+        "name": "David Bowie mural",
+        "name:en": "David Bowie mural",
+        "name:ru": "Стена памяти Боуи",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1156652,
+          51.4626168
+        ]
+      },
+      "id": "node/4596880090"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4646622289",
+        "addr:street": "Alexandra Gardens",
+        "check_date:opening_hours": "2021-02-13",
+        "name": "The Food Market Chiswick",
+        "opening_hours": "Su 10:00-14:00",
+        "tourism": "attraction",
+        "website": "https://www.thefoodmarketchiswick.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2567728,
+          51.480931
+        ]
+      },
+      "id": "node/4646622289"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4685111791",
+        "addr:city": "London",
+        "addr:street": "St. Katharine Docks",
+        "name": "St. Katharine Docks",
+        "tourism": "attraction",
+        "website": "https://www.skdocks.co.uk/",
+        "wheelchair": "yes",
+        "wheelchair:description": "Largely accessible, some boardwalks & smooth cobbles. All footbridges step-free. Most shops and restaurants are step-free from footways. No Accessible WC marked on plan.",
+        "wikidata": "Q1003616"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0716502,
+          51.5065406
+        ]
+      },
+      "id": "node/4685111791"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4700735610",
+        "addr:postcode": "KT7 0RY",
+        "addr:street": "High Street",
+        "email": "info@thamesdittonfarmersmarket.com",
+        "name": "Thames Ditton farmers market",
+        "opening_hours": "Sa 09:00-13:00",
+        "phone": "+44 20 8398 2206",
+        "tourism": "attraction",
+        "website": "https://www.thamesdittonfarmersmarket.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3333842,
+          51.3895865
+        ]
+      },
+      "id": "node/4700735610"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/4800377221",
+        "name": "The Mall",
+        "tourism": "attraction",
+        "wheelchair": "yes",
+        "wikidata": "Q842930",
+        "wikipedia": "en:The Mall, London"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1347305,
+          51.5042691
+        ]
+      },
+      "id": "node/4800377221"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5018732022",
+        "access": "yes",
+        "covered": "yes",
+        "leisure": "pitch",
+        "lit": "yes",
+        "name": "White Grounds Skatepark",
+        "name:en": "White Grounds Skatepark",
+        "sport": "skateboard",
+        "surface": "concrete",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0802581,
+          51.5019049
+        ]
+      },
+      "id": "node/5018732022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5018732921",
+        "addr:city": "London",
+        "addr:housenumber": "Arches 228-232",
+        "addr:postcode": "SE1 8SW",
+        "addr:street": "Station Approach",
+        "contact:facebook": "https://www.facebook.com/houseofvanslondon",
+        "contact:instagram": "https://www.instagram.com/houseofvansldn/",
+        "contact:twitter": "https://twitter.com/HouseOfVansLDN",
+        "contact:youtube": "https://www.youtube.com/user/VansShoes66",
+        "leisure": "sports_centre",
+        "name": "House of Vans London",
+        "opening_hours": "Mo-We off; Th-Fr 16:00-22:00; Sa 10:00-20:00; Su 12:00-18:00; PH unknown",
+        "phone": "+44 20 3745 5059",
+        "sport": "skateboard",
+        "tourism": "attraction",
+        "website": "https://www.houseofvanslondon.com"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1142097,
+          51.5005801
+        ]
+      },
+      "id": "node/5018732921"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5018732922",
+        "access": "yes",
+        "leisure": "pitch",
+        "lit": "yes",
+        "name": "Royal Oak (Meanwhile 2) Skatepark",
+        "name:en": "Royal Oak (Meanwhile 2) Skatepark",
+        "sport": "skateboard",
+        "surface": "concrete",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1910407,
+          51.519754
+        ]
+      },
+      "id": "node/5018732922"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5210995811",
+        "addr:city": "London",
+        "addr:housenumber": "3",
+        "addr:postcode": "SE1 2SG",
+        "addr:street": "Potters Fields Park",
+        "amenity": "theatre",
+        "fhrs:id": "1210952",
+        "name": "Bridge Theatre",
+        "operator": "London Theatre Company",
+        "source:addr": "FHRS Open Data",
+        "tourism": "attraction",
+        "website": "https://bridgetheatre.co.uk/",
+        "wheelchair": "yes",
+        "wikidata": "Q29831988",
+        "wikipedia": "en:Bridge Theatre"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0773186,
+          51.5040964
+        ]
+      },
+      "id": "node/5210995811"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235294918",
+        "historic": "aircraft",
+        "name": "Vickers 668 Varsity T.1",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.465268,
+          51.3563473
+        ]
+      },
+      "id": "node/5235294918"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235294919",
+        "historic": "aircraft",
+        "name": "Vickers 498 Viking 1A",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4650763,
+          51.3561789
+        ]
+      },
+      "id": "node/5235294919"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235294920",
+        "historic": "aircraft",
+        "name": "Vickers 806 Viscount",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4653874,
+          51.3560793
+        ]
+      },
+      "id": "node/5235294920"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235295521",
+        "historic": "aircraft",
+        "name": "Vickers Vanguard 'Merchantman' freighter",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4649757,
+          51.355962
+        ]
+      },
+      "id": "node/5235295521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235295522",
+        "historic": "aircraft",
+        "name": "BAC One-Eleven",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4650064,
+          51.3556291
+        ]
+      },
+      "id": "node/5235295522"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235295523",
+        "historic": "aircraft",
+        "name": "Vickers VC10 'Sultan of Oman'",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4654732,
+          51.3556438
+        ]
+      },
+      "id": "node/5235295523"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5235295524",
+        "historic": "aircraft",
+        "name": "Vickers VC10 'Victor Mike'",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4651637,
+          51.3547662
+        ]
+      },
+      "id": "node/5235295524"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5263136422",
+        "addr:city": "London",
+        "addr:postcode": "NW7 3HB",
+        "addr:street": "Ellesmere Avenue",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2609688,
+          51.6277341
+        ]
+      },
+      "id": "node/5263136422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5278307684",
+        "name": "Shrek's Adventure",
+        "tourism": "attraction",
+        "website": "https://www.shreksadventure.com/",
+        "wheelchair": "limited"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1194677,
+          51.5015819
+        ]
+      },
+      "id": "node/5278307684"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5299290161",
+        "name": "Kensington Street",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1914399,
+          51.5017737
+        ]
+      },
+      "id": "node/5299290161"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5322069123",
+        "building": "ruins",
+        "historic": "folly",
+        "name": "The Mausoleum",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4342589,
+          51.3274298
+        ]
+      },
+      "id": "node/5322069123"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5400891507",
+        "historic": "aircraft",
+        "name": "Vickers 837 Viscount",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4655832,
+          51.3559902
+        ]
+      },
+      "id": "node/5400891507"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5448252759",
+        "highway": "milestone",
+        "name": "Milestone",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.175029,
+          51.5015959
+        ]
+      },
+      "id": "node/5448252759"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5520405422",
+        "name": "Petticoat Lane Market",
+        "tourism": "attraction",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0790202,
+          51.5178766
+        ]
+      },
+      "id": "node/5520405422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5525594372",
+        "addr:street": "North End",
+        "name": "Speakers' Corner",
+        "tourism": "attraction",
+        "website": "https://www.speakerscornertrust.org/local-speakers-corners"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.102142,
+          51.377371
+        ]
+      },
+      "id": "node/5525594372"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5526329652",
+        "alt_name": "Speakers' Corner",
+        "name": "Stoneydown Speakers' Corner",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0363365,
+          51.5851267
+        ]
+      },
+      "id": "node/5526329652"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5568763422",
+        "addr:housenumber": "27",
+        "addr:street": "Lancaster Road",
+        "name": "Krāsainās mājas",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2045887,
+          51.5178771
+        ]
+      },
+      "id": "node/5568763422"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5568763423",
+        "addr:street": "Baker Street",
+        "name": "221B Baker Street",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1582367,
+          51.5233879
+        ]
+      },
+      "id": "node/5568763423"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5584597791",
+        "name": "Log trail & Giant badger sett",
+        "tourism": "attraction",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3036052,
+          51.4754254
+        ]
+      },
+      "id": "node/5584597791"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5656900425",
+        "addr:city": "London",
+        "addr:housenumber": "23-24",
+        "addr:postcode": "W2 3AN",
+        "addr:street": "Leinster Terrace",
+        "name": "Fake houses",
+        "tourism": "attraction",
+        "website": "https://en.wikipedia.org/wiki/Leinster_Gardens#False_houses",
+        "wikidata": "Q119745876"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1836332,
+          51.5126165
+        ]
+      },
+      "id": "node/5656900425"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5657364621",
+        "name": "Carnaby Street",
+        "tourism": "attraction",
+        "website": "https://en.wikipedia.org/wiki/Carnaby_Street",
+        "wikidata": "Q38778"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1387655,
+          51.513122
+        ]
+      },
+      "id": "node/5657364621"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5680159169",
+        "man_made": "ice_house",
+        "name": "Ice House",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4270204,
+          51.3291352
+        ]
+      },
+      "id": "node/5680159169"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5713648051",
+        "addr:city": "London",
+        "addr:street": "Bankside",
+        "name": "Globe Theatre Tour",
+        "tourism": "attraction",
+        "wheelchair": "limited",
+        "wheelchair:description": "Wide entrance, ramp to pay point and upper exhibition area. Small lift down to lower exhibition and tour start. Large lift up to Globe & step-free to interior. Second small lift (~80cm wide) down to Theatre Foyer and Exit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0975305,
+          51.508247
+        ]
+      },
+      "id": "node/5713648051"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5829636390",
+        "note": "비행기장인데 지도에는 없음",
+        "note:en": "\"It is an airplane but not on the map\"",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.487445,
+          51.3347893
+        ]
+      },
+      "id": "node/5829636390"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5909432503",
+        "name": "Grand Prix Exhibition",
+        "operator": "Brooklands Museum",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4652755,
+          51.3540235
+        ]
+      },
+      "id": "node/5909432503"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5909432504",
+        "name": "Cycle Exhibition",
+        "operator": "Brooklands Museum",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4649066,
+          51.3539477
+        ]
+      },
+      "id": "node/5909432504"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5909432505",
+        "name": "Fastest on Earth Exhibition",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4647467,
+          51.3541912
+        ]
+      },
+      "id": "node/5909432505"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5909432506",
+        "name": "Brooklands Beginnings",
+        "operator": "Brooklands Museum",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4644583,
+          51.3541985
+        ]
+      },
+      "id": "node/5909432506"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5926149941",
+        "name": "Royal Kitchens",
+        "toilets:wheelchair": "no",
+        "tourism": "attraction",
+        "wheelchair": "no",
+        "wheelchair:description": "Access across lawn from Palace. Stairs down to kitchen and up to offices. Garden has level sandy paths."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2951986,
+          51.4833727
+        ]
+      },
+      "id": "node/5926149941"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/5926159640",
+        "name": "Kew Palace",
+        "toilets:wheelchair": "no",
+        "tourism": "attraction",
+        "wheelchair": "yes",
+        "wheelchair:description": "Ramp to right of steps at entrance is behind a low wall. Lift to upper floors, ask staff. No toilets in building."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.295031,
+          51.4837854
+        ]
+      },
+      "id": "node/5926159640"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6085469535",
+        "name": "Wellgate Community Farm",
+        "operator": "Wellgate Community Farm",
+        "tourism": "attraction",
+        "website": "https://wellgatefarm.org/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.1459718,
+          51.5947166
+        ]
+      },
+      "id": "node/6085469535"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6087888534",
+        "addr:city": "London",
+        "addr:parentstreet": "Brick Lane",
+        "addr:postcode": "E1 6QL",
+        "addr:street": "Dray Walk",
+        "name": "Junk Yard Golf Club",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0724666,
+          51.5209656
+        ]
+      },
+      "id": "node/6087888534"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6344035585",
+        "name:es": "Casas de colores",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.205049,
+          51.5178746
+        ]
+      },
+      "id": "node/6344035585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6359405651",
+        "description": "Piece of the Berlin wall",
+        "operator": "The German School",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3064302,
+          51.4451418
+        ]
+      },
+      "id": "node/6359405651"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6448535913",
+        "name": "Alban Gate",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0937283,
+          51.5174951
+        ]
+      },
+      "id": "node/6448535913"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6571984977",
+        "name": "Sewer ventilation lamp",
+        "note": "This Victorian patent \"sewer gas destructor lamp\" was installed to burn off excess gas from the sewer below while providing much-needed lighting to the street above.",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1208758,
+          51.5098416
+        ]
+      },
+      "id": "node/6571984977"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6640200412",
+        "name": "The Wildlife Trail",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1415746,
+          51.5761442
+        ]
+      },
+      "id": "node/6640200412"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6717361002",
+        "name": "Chapter House and Pyx Chamber",
+        "opening_hours": "Mo-Fr 10:00-16:30; Sa 10:00-14:30",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1271403,
+          51.4990317
+        ]
+      },
+      "id": "node/6717361002"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6969250585",
+        "addr:city": "London",
+        "addr:parentstreet": "Brick Lane",
+        "addr:postcode": "E1 6QL",
+        "addr:street": "Dray Walk",
+        "name": "Junk Yard Golf Club",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0726718,
+          51.5209784
+        ]
+      },
+      "id": "node/6969250585"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/6970472925",
+        "HE_ref": "1396390",
+        "crossing": "uncontrolled",
+        "crossing_ref": "zebra",
+        "highway": "crossing",
+        "listed_status": "Grade II",
+        "name": "Abbey Road Crossing",
+        "source": "https://historicengland.org.uk/listing/the-list/list-entry/1396390",
+        "tactile_paving": "yes",
+        "tourism": "attraction",
+        "wikidata": "Q26675180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1773413,
+          51.532053
+        ]
+      },
+      "id": "node/6970472925"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7101131586",
+        "addr:housenumber": "23",
+        "addr:street": "Barrett Street",
+        "name": "St Christopher's place",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1501528,
+          51.5150919
+        ]
+      },
+      "id": "node/7101131586"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7217664648",
+        "name": "Sarm West Studios",
+        "tourism": "attraction",
+        "wikidata": "Q909770",
+        "wikipedia": "en:Sarm West Studios"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2050078,
+          51.5177203
+        ]
+      },
+      "id": "node/7217664648"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7448478539",
+        "name": "Chinese Peninsula Plantings",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4289439,
+          51.3281176
+        ]
+      },
+      "id": "node/7448478539"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7717850286",
+        "addr:city": "London",
+        "addr:postcode": "WC1N 3RD",
+        "addr:street": "Great Ormond Street",
+        "name": "Lullaby Factory",
+        "tourism": "attraction",
+        "website": "https://www.gosh.nhs.uk/parents-and-visitors/gosh-arts/art-collection/lullaby-factory"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1203485,
+          51.5228484
+        ]
+      },
+      "id": "node/7717850286"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7717870885",
+        "addr:street": "Westminster Bridge Road",
+        "name": "Namco Funscape",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1196704,
+          51.5018597
+        ]
+      },
+      "id": "node/7717870885"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7799409627",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.229107,
+          51.4841713
+        ]
+      },
+      "id": "node/7799409627"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/7907700298",
+        "name": "Waltham Abbey Gatehouse",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.003856,
+          51.6884666
+        ]
+      },
+      "id": "node/7907700298"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8047384526",
+        "name": "Cameron Mackintosh Ltd",
+        "source": "https://www.visitlondon.com/things-to-do/place/3085893-cameron-mackintosh-ltd",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1286073,
+          51.5190177
+        ]
+      },
+      "id": "node/8047384526"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8047413197",
+        "name": "City Visitor Trail",
+        "source": "https://www.visitlondon.com/things-to-do/place/30101525-city-visitor-trail",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1004668,
+          51.5135945
+        ]
+      },
+      "id": "node/8047413197"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8090570828",
+        "addr:housenumber": "5",
+        "addr:street": "Thurloe Square",
+        "description": "The building, now flats, is just 6ft wide at it’s narrowest point, growing to 34ft at its widest. Despite its size, its location is to blame for it’s hefty price tag. In 2016, a one bedroom apartment—at just 600 sq ft in size—went on sale for £895,000.",
+        "name": "The Thin House",
+        "tourism": "attraction",
+        "website": "https://secretldn.com/thin-house-thurloe-square/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1714343,
+          51.4941953
+        ]
+      },
+      "id": "node/8090570828"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8156230794",
+        "name": "Model Room",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4177404,
+          51.6905107
+        ]
+      },
+      "id": "node/8156230794"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8156230795",
+        "name": "Diagon Alley",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4173953,
+          51.6906635
+        ]
+      },
+      "id": "node/8156230795"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8156230796",
+        "name": "Creature Shop",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4173131,
+          51.6907597
+        ]
+      },
+      "id": "node/8156230796"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8156230799",
+        "name": "Interior Sets",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4182517,
+          51.6913438
+        ]
+      },
+      "id": "node/8156230799"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8156230800",
+        "name": "Great Hall",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4179011,
+          51.6911015
+        ]
+      },
+      "id": "node/8156230800"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8280936617",
+        "addr:city": "London",
+        "addr:housenumber": "575",
+        "addr:postcode": "SW8 3JD",
+        "addr:street": "Wandsworth Road",
+        "email": "575wandsworthroad@nationaltrust.org.uk",
+        "fee": "yes",
+        "name": "575 Wandsworth Road",
+        "phone": "+44 344 249 1895",
+        "tourism": "attraction",
+        "website": "https://www.nationaltrust.org.uk/575-wandsworth-road#Overview",
+        "wheelchair": "no"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1406549,
+          51.4697018
+        ]
+      },
+      "id": "node/8280936617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/8837108745",
+        "name": "The Children's Garden",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2960438,
+          51.4819292
+        ]
+      },
+      "id": "node/8837108745"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9270744978",
+        "name": "Keyhole Plantation",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.4284822,
+          51.3302271
+        ]
+      },
+      "id": "node/9270744978"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9587468617",
+        "name": "All Star Lanes Bowling",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1223979,
+          51.5196492
+        ]
+      },
+      "id": "node/9587468617"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9792388117",
+        "addr:city": "London",
+        "addr:housenumber": "2",
+        "addr:postcode": "N22 6UJ",
+        "addr:street": "Coburg Road",
+        "addr:unit": "Unit C",
+        "name": "Kidz Adventure Playzone",
+        "opening_hours": "Mo-Su 10:00-18:30",
+        "tourism": "attraction",
+        "website": "http://www.kidz-adventure-zone.com/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1130322,
+          51.5945025
+        ]
+      },
+      "id": "node/9792388117"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/9905532017",
+        "name": "Gabriel’s Wharf",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1101461,
+          51.50786
+        ]
+      },
+      "id": "node/9905532017"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10033618550",
+        "addr:city": "London",
+        "addr:housenumber": "79-85",
+        "addr:postcode": "SW7 3LD",
+        "addr:street": "Old Brompton Road",
+        "description": "Entrance on Old Brompton Road but goes far back.",
+        "fixme": "Unsure how this should be tagged.",
+        "name": "Dopamine Land London",
+        "opening_hours": "We-Fr 14:30-19:30; Sa 10:30-20:00; Su 10:30-19:30",
+        "source": "survey",
+        "tourism": "attraction",
+        "website": "https://dopaminelandexperience.com/london/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.176706,
+          51.4927616
+        ]
+      },
+      "id": "node/10033618550"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10046275960",
+        "booth": "K6",
+        "colour": "red",
+        "covered": "booth",
+        "disused:amenity": "telephone",
+        "man_made": "telephone",
+        "note": "this is where the photo for the back cover of Ziggy Stardust was taken, though the phone box in the photo was a K2 not a K6",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1400236,
+          51.5112054
+        ]
+      },
+      "id": "node/10046275960"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10656359430",
+        "historic:building": "residential",
+        "name": "Speaker's House",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1238319,
+          51.5003896
+        ]
+      },
+      "id": "node/10656359430"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10805826757",
+        "attraction": "animal",
+        "landuse": "animal_keeping",
+        "name": "horses",
+        "operator": "Vauxhall City Farm",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1198903,
+          51.486771
+        ]
+      },
+      "id": "node/10805826757"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10816748382",
+        "attraction": "animal",
+        "landuse": "animal_keeping",
+        "name": "horses",
+        "operator": "Vauxhall City Farm",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1194183,
+          51.4869414
+        ]
+      },
+      "id": "node/10816748382"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10816748383",
+        "attraction": "animal",
+        "landuse": "animal_keeping",
+        "name": "goats",
+        "operator": "Vauxhall City Farm",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1194901,
+          51.487143
+        ]
+      },
+      "id": "node/10816748383"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10832550379",
+        "attraction": "animal",
+        "name": "alpacas",
+        "operator": "Vauxhall City Farm",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1190772,
+          51.4872734
+        ]
+      },
+      "id": "node/10832550379"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10846665036",
+        "attraction": "animal",
+        "name": "alpacas",
+        "operator": "Vauxhall City Farm",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1195308,
+          51.4872757
+        ]
+      },
+      "id": "node/10846665036"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10980852370",
+        "name": "The Cosmic House",
+        "tourism": "attraction",
+        "website": "https://www.jencksfoundation.org/cosmic-house"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2074394,
+          51.5086645
+        ]
+      },
+      "id": "node/10980852370"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10985339607",
+        "name": "Findlater’s Corner Entrance",
+        "tourism": "attraction",
+        "wikidata": "Q119709275"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0882914,
+          51.5059542
+        ]
+      },
+      "id": "node/10985339607"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10994805432",
+        "description": "Available using official mobile app. This is an immersive experience: soundscape of geo-located music composed for the trees of The Regent's Park. This new app will play music by students from the Royal Academy of Music.",
+        "name": "Music for Trees",
+        "tourism": "attraction",
+        "website": "https://www.royalparks.org.uk/parks/the-regents-park/things-to-see-and-do/music-for-trees-mobile-app"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.148339,
+          51.5332998
+        ]
+      },
+      "id": "node/10994805432"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/10996315066",
+        "description": "Sweeney Todd, the demon barber of Fleet Street, had his shop at number 186 Fleet Street. This alleyway is just several meters from his shop might had been a place where he killed his victims.",
+        "name": "Behind Sweeney Todd barber shop",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1099596,
+          51.5143474
+        ]
+      },
+      "id": "node/10996315066"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11014068821",
+        "attraction": "animal",
+        "heritage:operator": "he",
+        "landuse": "animal_enclosure",
+        "name": "Fruit bats",
+        "name:ru": "плодоядная летучая мышь",
+        "old_name": "Ring-tailed lemurs",
+        "tourism": "attraction",
+        "zoo": "enclosure"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1544873,
+          51.5365289
+        ]
+      },
+      "id": "node/11014068821"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11018911465",
+        "description": "This underpass became an unlikely piece of cinematic history after its appearance in 'A Clockwork Orange.'",
+        "name": "Wandsworth underpass",
+        "tourism": "attraction",
+        "wikidata": "Q120174578"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1850078,
+          51.4622122
+        ]
+      },
+      "id": "node/11018911465"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11073648896",
+        "name": "Longitude Zero - Meridian Line marker on Ceiling of Foot Tunnel",
+        "opening_hours": "24/7",
+        "reservation": "no",
+        "tourism": "attraction",
+        "wheelchair": "yes"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0014766,
+          51.4524575
+        ]
+      },
+      "id": "node/11073648896"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11097623356",
+        "historic": "vehicle",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2292041,
+          51.6630337
+        ]
+      },
+      "id": "node/11097623356"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11196611713",
+        "name": "Big dining table with chairs",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.3037997,
+          51.4755495
+        ]
+      },
+      "id": "node/11196611713"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11225953116",
+        "name": "Four K6 Telephone Kiosks",
+        "tourism": "attraction",
+        "wikidata": "Q26319400"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1411656,
+          51.4916449
+        ]
+      },
+      "id": "node/11225953116"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11273070360",
+        "check_date": "2023-10-18",
+        "level": "0",
+        "name": "Horn of Khufu",
+        "tourism": "attraction",
+        "website": "https://horizonkheops.com/en/london/"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.0081105,
+          51.5432981
+        ]
+      },
+      "id": "node/11273070360"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11329638457",
+        "name": "Notting Hill movie - The Blue Door",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2058508,
+          51.5167827
+        ]
+      },
+      "id": "node/11329638457"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11329645385",
+        "name": "Notting Hill movie - Will's travel bookshop",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.2042626,
+          51.5146513
+        ]
+      },
+      "id": "node/11329645385"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11341596370",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.0579552,
+          51.6503049
+        ]
+      },
+      "id": "node/11341596370"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11350057022",
+        "name": "House from Love Actually",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.203133,
+          51.5177539
+        ]
+      },
+      "id": "node/11350057022"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11383991243",
+        "attraction": "animal",
+        "name": "Ostriches",
+        "operator": "London Zoo",
+        "species:wikidata": "Q17592",
+        "species:wikipedia": "en:Common ostrich",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1579607,
+          51.5356662
+        ]
+      },
+      "id": "node/11383991243"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11384481150",
+        "attraction": "animal",
+        "name": "Alpacas",
+        "operator": "London Zoo",
+        "species:wikidata": "Q81564",
+        "species:wikipedia": "en:Alpaca",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1540563,
+          51.5342321
+        ]
+      },
+      "id": "node/11384481150"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11384481151",
+        "attraction": "animal",
+        "name": "Llamas",
+        "operator": "London Zoo",
+        "species:wikidata": "Q42569",
+        "species:wikipedia": "en:Llama",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1538191,
+          51.5341796
+        ]
+      },
+      "id": "node/11384481151"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11385944074",
+        "attraction": "animal",
+        "name": "Flamingos",
+        "operator": "London Zoo",
+        "species:wikidata": "Q179863",
+        "species:wikipedia": "en:Greater flamingo",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1528689,
+          51.5348194
+        ]
+      },
+      "id": "node/11385944074"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11385944075",
+        "attraction": "animal",
+        "name": "Pelicans",
+        "operator": "London Zoo",
+        "species:wikidata": "Q199427",
+        "species:wikipedia": "en:Great white pelican",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1524617,
+          51.5346639
+        ]
+      },
+      "id": "node/11385944075"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11391816521",
+        "attraction": "animal",
+        "name": "Goats",
+        "operator": "London Zoo",
+        "species:wikidata": "Q2934",
+        "species:wikipedia": "en:Goat",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1538669,
+          51.5338238
+        ]
+      },
+      "id": "node/11391816521"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "@id": "node/11391816522",
+        "attraction": "animal",
+        "name": "Pigs",
+        "operator": "London Zoo",
+        "species:wikidata": "Q787",
+        "species:wikipedia": "en:Pig",
+        "tourism": "attraction"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.1541268,
+          51.5338325
+        ]
+      },
+      "id": "node/11391816522"
+    }
+  ]
+}
