@@ -104,12 +104,12 @@ url  = f'{host}/{path}/{file}'
 local_url = f'../data/{file}'
 
 
-if os.path.exists(file):
-  #df = pd.read_csv(file, compression='gzip', low_memory=False)
-else: 
-  #df = pd.read_csv(url, compression='gzip', low_memory=False)
-    # 下载该文件到本地 的data文件夹 -- lwx
-  #df.to_csv(local_url)
+#if os.path.exists(file):
+#  df = pd.read_csv(file, compression='gzip', low_memory=False)
+#else: 
+#  df = pd.read_csv(url, compression='gzip', low_memory=False)
+#    # 下载该文件到本地 的data文件夹 -- lwx
+#  df.to_csv(local_url)
 ```
 
 ## 1. Who collected the data?
@@ -172,6 +172,8 @@ import pandas as pd
 import seaborn as sns
 ```
 
+数据读取
+
 ```{python}
 # loading data and data wrangling
 ## loading data
@@ -195,85 +197,7 @@ grouped_df1 = df1.groupby('host_id').sum()
 grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
 ```
 
-```{python}
-### convert the values in the 'one' column of each row to integers
-grouped_df1 = df1.groupby('host_id').sum()
-grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
-```
-
-#### K-means聚类
-
-```{python}
-# do K-means clustering analysis to find the proper value that could be used to filters out local landlords and companies
-## do K-means clustering analysis
-from sklearn.cluster import KMeans
-the_count = grouped_df1[['counts']]  # Use double brackets to maintain DataFrame format
-
-
-k_pref = 3  # The number of clusters have chosen
-kmeans = KMeans(n_clusters=k_pref,  n_init=31, random_state=42)
-kmeans.fit(the_count)
-
-# join the cluter to the origin dataframe
-grouped_df1['local_or_company'] = kmeans.labels_
-```
-
-```{python}
-## Plot the result of clustering
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-# Set the plotting style
-sns.set(style="whitegrid")
-
-# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count', and the color is determined by cluster labels
-plt.figure(figsize=(13, 11))
-sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
-
-# Add chart title and labels
-plt.title('K-Means Clustering of the_count')
-plt.xlabel('Index')
-plt.ylabel('counts')
-
-# Generate the chart
-plt.legend(title='Cluster')
-plt.show()
-```
-
-```{python}
-## Define based on facts
-# df is my DataFrame
-# Replace values in the 'local_or_company' column that are equal to 0 with 1, and replace other values with 0
-grouped_df1['local_or_company'] = np.where(grouped_df1['local_or_company'] == 0, 1, 0)
-
-## plot again for checking
-# Set the plotting style
-sns.set(style="whitegrid")
-
-# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count', and the color is determined by cluster labels
-plt.figure(figsize=(11, 6))
-sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
-
-# Select rows in df that are local landlords, then find the maximum value of the 'calculated_host_listings_count' column from the filtered data. This calculates the maximum number of houses owned by local landlords
-# First, select the rows where the value in the 'local_or_company' column is 1, representing local landlords
-filtered_rows = grouped_df1[grouped_df1['local_or_company'] == 1]
-
-# Then, find the maximum value in the 'b' column among these rows
-max_value_in_local_hosts = filtered_rows['counts'].max()
-print(f'Max value in local hosts is: {max_value_in_local_hosts}')
-
-# Add a red dashed line at y=max_value_in_local_hosts, and label it as 'max value of the number of Airbnbs owned by local landlords'
-plt.axhline(y=max_value_in_local_hosts, color='red', linestyle='--', label=max_value_in_local_hosts)
-
-# Add chart title and labels
-plt.title('K-Means Clustering of the count that is Airbnbs owned by local landlords and the companies')
-plt.xlabel('id')
-plt.ylabel('the numeber of Airbnbs')
-
-# Display the legend and the chart
-plt.legend(title='The type of hosts')
-plt.show()
-```
+#### 聚类 Gaussian Mixture Model 
 
 ```{python}
 ## better know the characteristics of the data and find that maybe Gaussian Mixture Model fit the data
@@ -303,6 +227,8 @@ print(grouped_df1.head())
 print(grouped_df1.groupby('cluster')['counts'].describe())
 ```
 
+高斯 聚类结果
+
 ```{python}
 ## maybe 595 is the outlier, so drop it and try different n_components value sizes
 # Find the index of the maximum value in the 'cluster' column
@@ -316,7 +242,7 @@ grouped_df1 = grouped_df1.drop(max_index)
 ## try the GMM to do clustering again
 # Convert the 'counts' column into a format suitable for clustering (two-dimensional array)
 X = grouped_df1[['counts']].values
-
+1
 # Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
 gmm = GaussianMixture(n_components=3, random_state=0)
 
@@ -369,7 +295,7 @@ plt.show()
 ```{python}
 # Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
 df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
-df.head(14)
+df.head(5)
 ```
 
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
@@ -408,29 +334,32 @@ average_days = 3
 # Selecting listings where availability_365 is greater than 0
 df_geq_0 = df[df.availability_365 > 0]
 
+df_other = df
 # Calculating estimated annual nights
-df.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
+df_other.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
     (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
 ) * df_geq_0.availability_365
-
 # Setting estimated annual income to 0 for listings with availability_365 equals 0
-df.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
+df_other.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
 
 # Calculating estimated annual income
-df.loc[df.availability_365 > 0, 'estimated_annual_income'] = df['estimated_annual_nights'] * df_geq_0.price
+df_other.loc[df.availability_365 > 0, 'estimated_annual_income'] = df['estimated_annual_nights'] * df_geq_0.price
 
 # Filling any missing values in both new columns with 0
-df[['estimated_annual_nights', 'estimated_annual_income']] = df[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+df_other[['estimated_annual_nights', 'estimated_annual_income']] = df[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+```
 
+```{python}
 # Extract the number of beds from the 'name' column.
 def extract_beds(name):
     match = re.search(r'(\d+)\s+beds?', name)
     return int(match.group(1)) if match else 0
 
-df['number_of_beds'] = df['name'].apply(extract_beds)
+df_other['number_of_beds'] = df['name'].apply(extract_beds)
 
 # Calculate 'tourists_expenditure'
-df['tourists_expenditure'] = df['number_of_beds'] * df['estimated_annual_nights'] * 100
+df_other['tourists_expenditure'] = df['number_of_beds'] * df['estimated_annual_nights'] * 100
+df_other.head(4)
 ```
 
 #### 模型 local economic multiplier -- LM3(London)
@@ -442,22 +371,24 @@ coef1 = 1.76
 coef2 = 0.36
 
 # local landlords using 1.76, real estate company landlord using 0.36
-df.loc[df.local_or_company==1,'value_to_local_economy']=df.loc[df.local_or_company==1,'estimated_annual_income']*coef1
-df.loc[df.local_or_company==0,'value_to_local_economy']=df.loc[df.local_or_company==0,'estimated_annual_income']*coef2
+df_other.loc[df.local_or_company==1,'value_to_local_economy']=df.loc[df.local_or_company==1,'estimated_annual_income']*coef1
+df_other.loc[df.local_or_company==0,'value_to_local_economy']=df.loc[df.local_or_company==0,'estimated_annual_income']*coef2
 
-# Update 'value_to_local_economy' by adding the product of 'tourists_expenditure' and coef1(1.76)
-df['value_to_local_economy'] += df['tourists_expenditure'] * coef1
+# Update 'value_to_local_economy' by adding the product of 'tourists_expenditure' and 0.43)
+df_other['value_to_local_economy'] = df['tourists_expenditure'] * 0.43 + df['value_to_local_economy']
+```
 
-df = df.groupby('neighbourhood')['value_to_local_economy'].sum().reset_index(name='local_economy_contribution_from_airbnb')
+```{python}
+df_other = df_other.groupby('neighbourhood')['value_to_local_economy'].sum().reset_index(name='local_economy_contribution_from_airbnb')
+df_other['local_economy_contribution_from_airbnb'] = df_other['local_economy_contribution_from_airbnb'].round(2)
 
-df['local_economy_contribution_from_airbnb'] = df['local_economy_contribution_from_airbnb'].round(2)
-
+df_other.head(4)
 # Generate a new CSV file to display the local economy contribution from Airbnb tourism for each borough.
 # df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
 ```
 
 ```{python}
-# df.head(10)
+df.head(5)
 # dataframe -- local_economy_contribution_from_airbnb + neighbourhood
 ```
 
@@ -475,6 +406,7 @@ import json
 import pandas as pd
 from shapely.geometry import Point
 import geopandas as gpd
+import pandas as pdpip
 ```
 
 #### 数据读取
@@ -580,6 +512,16 @@ kmeans.fit(X)
 # 将聚类标签添加到原始 DataFrame
 count_points_in_polygon['cluster'] = kmeans.labels_
 
+# 找到最小 point_count 的索引
+min_point_count_cluster = kmeans.labels_[np.argmin(X)]
+
+# 重新分配聚类标签，使最小 point_count 的聚类为 2
+count_points_in_polygon['cluster'] = [(label + 1 if label >= min_point_count_cluster 
+                                       else label) for label in count_points_in_polygon['cluster']]
+count_points_in_polygon['cluster'] = count_points_in_polygon['cluster'].replace(min_point_count_cluster, 1)
+
+
+
 # 可视化聚类结果（如果适用）
 plt.scatter(count_points_in_polygon['GSS_CODE'], count_points_in_polygon['point_count'], c=count_points_in_polygon['cluster'])
 plt.xlabel('GSS_CODE')
@@ -595,7 +537,7 @@ plt.show()
 按照每个borough的旅游景点数量，划分旅游区和非旅游区
 
 ```{python}
-non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 3]
+non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 1]
 # 假设 count_points_in_polygon 是您的 GeoDataFrame
 # count_points_in_polygon 应该包含一个名为 'cluster' 的列
 
@@ -612,6 +554,15 @@ plt.legend(title='Clusters')
 
 # 显示图表
 plt.show()
+```
+
+### 按borough经济可视化
+
+```{python}
+# df_economy 经济列
+# count_points_in_polygon
+type(count_points_in_polygon)
+type(df_economy)
 ```
 
 ## Sustainable Authorship Tools
