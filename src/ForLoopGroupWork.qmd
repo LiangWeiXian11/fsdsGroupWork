@@ -270,7 +270,7 @@ count_points_in_polygon = borough.merge(count_points_df, on='GSS_CODE', how='lef
 count_points_in_polygon['point_count'].fillna(0, inplace=True)
 
 # 显示结果
-print(count_points_in_polygon[['GSS_CODE', 'point_count']])
+# print(count_points_in_polygon[['GSS_CODE', 'point_count']])
 ```
 
 ####  Visualization
@@ -314,7 +314,7 @@ plt.title('Cluster Analysis of Point Counts in Polygons')
 plt.show()
 
 # 查看聚类结果
-print(count_points_in_polygon)
+# print(count_points_in_polygon)
 ```
 
 #### 聚类 区分 旅游区 & 非旅游区
@@ -339,6 +339,7 @@ plt.legend(title='Clusters')
 # 显示图表
 plt.show()
 ```
+
 
 ## Sustainable Authorship Tools
 
