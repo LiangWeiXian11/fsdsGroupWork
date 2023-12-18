@@ -147,7 +147,7 @@ import pandas as pd
 import seaborn as sns
 ```
 
-数据读取
+#### 数据读取
 
 ```{python}
 # loading data and data wrangling
@@ -172,7 +172,7 @@ grouped_df1 = df1.groupby('host_id').sum()
 grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
 ```
 
-#### 聚类 Gaussian Mixture Model 
+#### 聚类预处理 Gaussian Mixture Model 
 
 ```{python}
 ## better know the characteristics of the data and find that maybe Gaussian Mixture Model fit the data
@@ -202,8 +202,6 @@ print(grouped_df1.head())
 print(grouped_df1.groupby('cluster')['counts'].describe())
 ```
 
-高斯 聚类结果
-
 ```{python}
 ## maybe 595 is the outlier, so drop it and try different n_components value sizes
 # Find the index of the maximum value in the 'cluster' column
@@ -230,6 +228,8 @@ print(grouped_df1.head())
 # Check the statistics for each cluster
 print(grouped_df1.groupby('local_or_company')['counts'].describe())
 ```
+
+#### 聚类结果展示
 
 ```{python}
 ## Define based on facts
@@ -366,8 +366,6 @@ df_other.head(4)
 df.head(5)
 # dataframe -- local_economy_contribution_from_airbnb + neighbourhood
 ```
-
-( 45 points; Answer due {{< var assess.group-date >}} )
 
 ### 旅游区聚类  path 2 tourism areas
 number of tourism destination + boundary in london --{cluster 2}--> by number of tourism destination by per areas --> 
