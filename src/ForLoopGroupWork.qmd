@@ -161,11 +161,216 @@ Location information for listings are anonymized by Airbnb. In practice, this me
 
 ::: {.duedate}
 
-* Hosts 房东类型 -- 聚类（中介&当地）
-
-  地图
 ### path 1.1 find local owner --diff Hosts
-(possible solution : number of house they have) {cluster 1}
+区分 Hosts 房东类型 -- 聚类（中介&当地）
+(solution : number of house they have) {cluster 1}
+
+```{python}
+import os
+import numpy as np
+import pandas as pd
+import seaborn as sns
+```
+
+```{python}
+# loading data and data wrangling
+## loading data
+df = pd.read_csv('../data/listings.csv', low_memory=False)
+## data wrangling
+### select the column of 'host_id' to make a new dataframe called df1
+df1 = df[['host_id']]
+num_rows = len(df1)
+### creat a new dataframe
+# to make a column called ones (I don't like to use groupby().count, as the if i groupby the 'host_id' then the other like 'name' 
+# that i select from df will show the count of 'host_id' that could be ambiguous)
+### create an array where each element is 1 using np.ones
+ones_array = np.ones((num_rows, 1))
+
+### convert the array to a DataFrame
+df_ones = pd.DataFrame(ones_array, columns=['ones'])
+## make every lines' value of 'one' to be int
+df1['ones'] = df_ones['ones'].astype(int)
+### convert the values in the 'one' column of each row to integers
+grouped_df1 = df1.groupby('host_id').sum()
+grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
+```
+
+```{python}
+### convert the values in the 'one' column of each row to integers
+grouped_df1 = df1.groupby('host_id').sum()
+grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
+```
+
+#### K-means聚类
+
+```{python}
+# do K-means clustering analysis to find the proper value that could be used to filters out local landlords and companies
+## do K-means clustering analysis
+from sklearn.cluster import KMeans
+the_count = grouped_df1[['counts']]  # Use double brackets to maintain DataFrame format
+
+
+k_pref = 3  # The number of clusters have chosen
+kmeans = KMeans(n_clusters=k_pref,  n_init=31, random_state=42)
+kmeans.fit(the_count)
+
+# join the cluter to the origin dataframe
+grouped_df1['local_or_company'] = kmeans.labels_
+```
+
+```{python}
+## Plot the result of clustering
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set the plotting style
+sns.set(style="whitegrid")
+
+# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count', and the color is determined by cluster labels
+plt.figure(figsize=(13, 11))
+sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
+
+# Add chart title and labels
+plt.title('K-Means Clustering of the_count')
+plt.xlabel('Index')
+plt.ylabel('counts')
+
+# Generate the chart
+plt.legend(title='Cluster')
+plt.show()
+```
+
+```{python}
+## Define based on facts
+# df is my DataFrame
+# Replace values in the 'local_or_company' column that are equal to 0 with 1, and replace other values with 0
+grouped_df1['local_or_company'] = np.where(grouped_df1['local_or_company'] == 0, 1, 0)
+
+## plot again for checking
+# Set the plotting style
+sns.set(style="whitegrid")
+
+# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count', and the color is determined by cluster labels
+plt.figure(figsize=(11, 6))
+sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
+
+# Select rows in df that are local landlords, then find the maximum value of the 'calculated_host_listings_count' column from the filtered data. This calculates the maximum number of houses owned by local landlords
+# First, select the rows where the value in the 'local_or_company' column is 1, representing local landlords
+filtered_rows = grouped_df1[grouped_df1['local_or_company'] == 1]
+
+# Then, find the maximum value in the 'b' column among these rows
+max_value_in_local_hosts = filtered_rows['counts'].max()
+print(f'Max value in local hosts is: {max_value_in_local_hosts}')
+
+# Add a red dashed line at y=max_value_in_local_hosts, and label it as 'max value of the number of Airbnbs owned by local landlords'
+plt.axhline(y=max_value_in_local_hosts, color='red', linestyle='--', label=max_value_in_local_hosts)
+
+# Add chart title and labels
+plt.title('K-Means Clustering of the count that is Airbnbs owned by local landlords and the companies')
+plt.xlabel('id')
+plt.ylabel('the numeber of Airbnbs')
+
+# Display the legend and the chart
+plt.legend(title='The type of hosts')
+plt.show()
+```
+
+```{python}
+## better know the characteristics of the data and find that maybe Gaussian Mixture Model fit the data
+# check data using Kernel Density Estimate (KDE) plot
+grouped_df1.counts.plot.kde(xlim=(0,20)); #kernel density estimate plot
+```
+
+```{python}
+# do clustering analysis using Gaussian Mixture Model 
+## setting different n_components value sizes to produce different clusters analyses rationality
+from sklearn.mixture import GaussianMixture
+
+# grouped_df1 is your DataFrame, containing the column 'counts'
+# Convert the 'counts' column into a format suitable for clustering (two-dimensional array).
+X = grouped_df1[['counts']].values
+
+# Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
+gmm = GaussianMixture(n_components=2, random_state=0)
+
+# Fit and predict the data
+grouped_df1['cluster'] = gmm.fit_predict(X)
+
+# View the clustering results
+print(grouped_df1.head())
+
+# Check the statistics for each cluster
+print(grouped_df1.groupby('cluster')['counts'].describe())
+```
+
+```{python}
+## maybe 595 is the outlier, so drop it and try different n_components value sizes
+# Find the index of the maximum value in the 'cluster' column
+max_index = grouped_df1['counts'].idxmax()
+
+# Delete this row
+grouped_df1 = grouped_df1.drop(max_index)
+```
+
+```{python}
+## try the GMM to do clustering again
+# Convert the 'counts' column into a format suitable for clustering (two-dimensional array)
+X = grouped_df1[['counts']].values
+
+# Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
+gmm = GaussianMixture(n_components=3, random_state=0)
+
+# Fit the data and make predictions
+grouped_df1['local_or_company'] = gmm.fit_predict(X)
+
+# View the clustering results
+print(grouped_df1.head())
+
+# Check the statistics for each cluster
+print(grouped_df1.groupby('local_or_company')['counts'].describe())
+```
+
+```{python}
+## Define based on facts
+# Replace values in the 'local_or_company' column that are equal to 0 and 2 with 1, and replace other values with 0
+grouped_df1['local_or_company'] = np.where(grouped_df1['local_or_company'] == 0|2, 1, 0)
+```
+
+```{python}
+## plot again for visulisation and get the max acount of Airbnbs owned by local landlords
+# Set the plotting style
+sns.set(style="whitegrid")
+
+# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count,' and the color is determined by cluster labels
+plt.figure(figsize=(11, 6))
+sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
+
+# Select rows in df that are local landlords, then find the maximum value of the 'calculated_host_listings_count' column from the filtered data. This calculates the maximum number of houses owned by local landlords
+# First, select the rows where the value in the 'local_or_company' column is 1, representing local landlords
+filtered_rows = grouped_df1[grouped_df1['local_or_company'] == 1]
+
+# Then, find the maximum value in the 'b' column among these rows
+max_value_in_local_hosts_GMM = filtered_rows['counts'].max()
+print(f'Max value in local hosts is: {max_value_in_local_hosts_GMM}')
+
+# Add a red dashed line at y=max_value_in_local_hosts, and label it as 'max value of the number of Airbnbs owned by local landlords
+plt.axhline(y=max_value_in_local_hosts_GMM, color='red', linestyle='--', label=max_value_in_local_hosts_GMM)
+
+# Add chart title and labels
+plt.title('The Clustering of Gaussian Mixture Model of the count that is Airbnbs owned by local landlords and the companies')
+plt.xlabel('id')
+plt.ylabel('the numeber of Airbnbs')
+
+# Display the legend and the chart
+plt.legend(title='The type of hosts')
+plt.show()
+```
+
+```{python}
+# Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
+df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
+df.head(14)
+```
 
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
   
@@ -187,7 +392,6 @@ Location information for listings are anonymized by Airbnb. In practice, this me
 rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
 
 ( 45 points; Answer due {{< var assess.group-date >}} )
-
 
 ### 旅游区聚类  path 2 tourism areas
 number of tourism destination + boundary in london --{cluster 2}--> by number of tourism destination by per areas --> 
@@ -339,7 +543,6 @@ plt.legend(title='Clusters')
 # 显示图表
 plt.show()
 ```
-
 
 ## Sustainable Authorship Tools
 
