@@ -91,6 +91,9 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 ```{python}
 import os
 import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+import matplotlib.pyplot as plt
 ```
 
 ```{python}
@@ -191,6 +194,151 @@ number of tourism destination + boundary in london --{cluster 2}--> by number of
 （根据每个旅游区的旅游景点数量，划分旅游区和非旅游区）
 
 :::
+
+```{python}
+# package
+import json
+import pandas as pd
+from shapely.geometry import Point
+import geopandas as gpd
+```
+
+#### 数据读取
+
+```{python}
+# Shapefile 路径
+shapefile_path = '../data/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
+
+# 数据读取
+file_path = '../data/export.geojson'
+# 读取 GeoJSON 文件
+with open(file_path, 'r', encoding='utf-8') as file:
+    geojson_data = json.load(file)
+# 准备一个列表来存储点坐标
+point_coordinates = []
+
+# 遍历特征集合中的每个特征--并用列表进行存储
+for feature in geojson_data.get('features', []):
+    # 检查几何类型是否为点
+    if feature['geometry']['type'] == 'Point':
+        # 提取坐标
+        coordinates = feature['geometry']['coordinates']
+        point_coordinates.append(coordinates)
+```
+
+```{python}
+points = [Point(x, y) for x, y in point_coordinates]
+
+# 创建一个 DataFrame
+df = pd.DataFrame(point_coordinates, columns=['Longitude', 'Latitude'])
+
+# 使用 DataFrame 和 Points 创建 GeoDataFrame
+attraction_gdf = gpd.GeoDataFrame(df, geometry=points)
+```
+
+```{python}
+# 加载 Shapefile
+borough = gpd.read_file(shapefile_path)
+attraction_gdf.set_crs(epsg=4326, inplace=True)
+# 确保两个 GeoDataFrame 使用相同的坐标参考系统
+attraction_gdf = attraction_gdf.to_crs(borough.crs)
+```
+
+#### 景点数量统计
+通过空间连接，统计每个borough内部的景点数量
+
+```{python}
+# 景点数量统计
+# 使用空间连接来统计每个多边形包含的点数
+point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
+# 计算每个多边形包含的点数
+count_points_in_polygon = point_in_polygon.groupby('GSS_CODE').size().reset_index(name='point_count')
+
+# 执行空间连接
+point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
+
+# 对连接结果进行分组统计
+count_points = point_in_polygon.groupby('GSS_CODE').size()
+
+# 将计数结果转换为 DataFrame，并重置索引
+count_points_df = count_points.reset_index(name='point_count')
+
+# 保证所有多边形都包含在统计结果中
+count_points_in_polygon = borough.merge(count_points_df, on='GSS_CODE', how='left')
+
+# 将未包含点的多边形的点数设为零
+count_points_in_polygon['point_count'].fillna(0, inplace=True)
+
+# 显示结果
+print(count_points_in_polygon[['GSS_CODE', 'point_count']])
+```
+
+####  Visualization
+展示每个borough内部的景点数量
+
+```{python}
+# 假设 count_points_in_polygon 是您的 GeoDataFrame
+# count_points_in_polygon 应该包含一个名为 'point_count' 的列
+# 使用 'point_count' 列的值来设置颜色映射
+# 'plasma' 是一个由浅至深的颜色映射，您可以根据需要选择其他颜色映射
+count_points_in_polygon.plot(column='point_count', cmap='plasma', legend=True, figsize=(10, 6))
+
+# 添加标题和标签（可选）
+plt.title('Visualization by Point Count')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
+
+# 显示图表
+plt.show()
+```
+
+```{python}
+# 提取 point_count 作为聚类的特征
+X = count_points_in_polygon[['point_count']].values
+
+# 选择聚类的数量
+n_clusters = 3
+
+# 创建 KMeans 实例并拟合数据
+kmeans = KMeans(n_clusters=n_clusters)
+kmeans.fit(X)
+
+# 将聚类标签添加到原始 DataFrame
+count_points_in_polygon['cluster'] = kmeans.labels_
+
+# 可视化聚类结果（如果适用）
+plt.scatter(count_points_in_polygon['GSS_CODE'], count_points_in_polygon['point_count'], c=count_points_in_polygon['cluster'])
+plt.xlabel('GSS_CODE')
+plt.ylabel('Point Count')
+plt.title('Cluster Analysis of Point Counts in Polygons')
+plt.show()
+
+# 查看聚类结果
+print(count_points_in_polygon)
+```
+
+#### 聚类 区分 旅游区 & 非旅游区
+按照每个borough的旅游景点数量，划分旅游区和非旅游区
+
+```{python}
+non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 3]
+# 假设 count_points_in_polygon 是您的 GeoDataFrame
+# count_points_in_polygon 应该包含一个名为 'cluster' 的列
+
+# 设置颜色：cluster 等于 3 为一种颜色，其余为另一种颜色
+colors = count_points_in_polygon['cluster'].map(lambda x: 'silver' if x == 1 else 'grey')
+
+# 绘制 GeoDataFrame
+count_points_in_polygon.plot(color=colors, figsize=(10, 6))
+
+# 添加图例（可选）
+plt.scatter([], [], color='silver', label='non tourism borough')
+plt.scatter([], [], color='grey', label='tourism borough')
+plt.legend(title='Clusters')
+
+# 显示图表
+plt.show()
+```
 
 ## Sustainable Authorship Tools
 
