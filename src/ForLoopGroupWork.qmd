@@ -142,17 +142,12 @@ ax.set_xlim([0,500]);
 ```
 
 ## 3. How was the data collected?  
-
-::: {.duedate}
-
-* Open Street Map API (tourism points)
-* InsideAirbnb
-* GIS statistical-gis-boundaries-london
-
-( 5 points; Answer due Week 8 )
-
-:::
-
+Inside Airbnb:
+The data used in the analysis were mainly from Inside Airbnb, which is independent. To be more specific, the website is not related to the official Airbnb site and is protected under a Creative Commons CC0 1.0 Universal (CCO 1.0) ‘Public Domain Dedication’ license. The data includes information such as the location, price, number of bedrooms, number of reviews, and other details about the listings. Moreover, the data from Inside Airbnb is typically collected through a combination of web scraping Airbnb's publicly available listings and analyzing this data for insights. Within Airbnb utilizes automated scripts to gather data from the Airbnb website in a methodical manner, with an emphasis on publicly accessible information from different listings.  Data is gathered via scraping and then assembled into a database.  This procedure involves organizing the data so that it can be easily analyzed and refining it by removing duplicates and fixing errors.
+Points of Interest (PoI) data from Open Street Map(OSM):
+The OSM POI points for London attractions were used in this study. Data for OpenStreetMap (OSM) is gathered using a range of techniques, mostly by volunteers in the community. These techniques include working with organizations, importing data, using GPS and manual surveys, and using local expertise. The data structure is made up of point data with attributes, such as geographic information, assigned to each data point.
+London Borough Boundaries:
+Official Ordnance Survey polygons showing Borough boundaries and reference code. Ordnance Survey is the British national mapping agency that provides geographic data for government, business, and individuals. Which is accessible from the London Datastore.
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
 
 
