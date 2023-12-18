@@ -105,11 +105,11 @@ local_url = f'../data/{file}'
 
 
 if os.path.exists(file):
-  df = pd.read_csv(file, compression='gzip', low_memory=False)
+  #df = pd.read_csv(file, compression='gzip', low_memory=False)
 else: 
-  df = pd.read_csv(url, compression='gzip', low_memory=False)
+  #df = pd.read_csv(url, compression='gzip', low_memory=False)
     # 下载该文件到本地 的data文件夹 -- lwx
-  df.to_csv(local_url)
+  #df.to_csv(local_url)
 ```
 
 ## 1. Who collected the data?
@@ -390,6 +390,76 @@ df.head(14)
 ### 计算当地经济  path 1 economy 
 (定量计算当地经济--local economy mutiplier )
 rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
+
+#### 计算
+* 房东收入 estimated_annual_income
+* 游客支出 tourists_expenditure
+
+```{python}
+# Assuming DataFrame is named 'df'
+# Replace 'df' with the actual name of your DataFrame variable
+
+import re
+
+# Setting the model parameters
+review_rate = 0.5
+average_days = 3
+
+# Selecting listings where availability_365 is greater than 0
+df_geq_0 = df[df.availability_365 > 0]
+
+# Calculating estimated annual nights
+df.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
+    (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
+) * df_geq_0.availability_365
+
+# Setting estimated annual income to 0 for listings with availability_365 equals 0
+df.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
+
+# Calculating estimated annual income
+df.loc[df.availability_365 > 0, 'estimated_annual_income'] = df['estimated_annual_nights'] * df_geq_0.price
+
+# Filling any missing values in both new columns with 0
+df[['estimated_annual_nights', 'estimated_annual_income']] = df[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+
+# Extract the number of beds from the 'name' column.
+def extract_beds(name):
+    match = re.search(r'(\d+)\s+beds?', name)
+    return int(match.group(1)) if match else 0
+
+df['number_of_beds'] = df['name'].apply(extract_beds)
+
+# Calculate 'tourists_expenditure'
+df['tourists_expenditure'] = df['number_of_beds'] * df['estimated_annual_nights'] * 100
+```
+
+#### 模型 local economic multiplier -- LM3(London)
+
+```{python}
+# applying local economic multiplier
+# 模型参数
+coef1 = 1.76
+coef2 = 0.36
+
+# local landlords using 1.76, real estate company landlord using 0.36
+df.loc[df.local_or_company==1,'value_to_local_economy']=df.loc[df.local_or_company==1,'estimated_annual_income']*coef1
+df.loc[df.local_or_company==0,'value_to_local_economy']=df.loc[df.local_or_company==0,'estimated_annual_income']*coef2
+
+# Update 'value_to_local_economy' by adding the product of 'tourists_expenditure' and coef1(1.76)
+df['value_to_local_economy'] += df['tourists_expenditure'] * coef1
+
+df = df.groupby('neighbourhood')['value_to_local_economy'].sum().reset_index(name='local_economy_contribution_from_airbnb')
+
+df['local_economy_contribution_from_airbnb'] = df['local_economy_contribution_from_airbnb'].round(2)
+
+# Generate a new CSV file to display the local economy contribution from Airbnb tourism for each borough.
+# df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
+```
+
+```{python}
+# df.head(10)
+# dataframe -- local_economy_contribution_from_airbnb + neighbourhood
+```
 
 ( 45 points; Answer due {{< var assess.group-date >}} )
 
