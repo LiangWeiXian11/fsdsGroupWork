@@ -113,35 +113,16 @@ else:
 ```
 
 ## 1. Who collected the data?
-Firstly, the data of listing data of Airbnb used in the project is mainly collected by Inside Airbnb (). Secondly, the shapefile of the London boroughs is determined by the government of UK. In addition, the tourist attractions in London are collected by Open Street Map (OSM).
+The data of listing of Airbnb used in the project is mainly collected by Inside Airbnb (Inside Airbnb 2023) . 
+
 ## 2. Why did they collect it?
-
-::: {.duedate}
-
-* Use the distribution of scenic spots and wards boundary to select non-tourism-oriented wards
-
-
-( 4 points; Answer due Week 7 )
-
-:::
-
-```{python}
-print(f"Data frame is {df.shape[0]:,} x {df.shape[1]:,}")
-```
-
-```{python}
-ax = df.host_listings_count.plot.hist(bins=50);
-ax.set_xlim([0,500]);
-```
+The goal of IA, a mission-driven activist project, is to create a platform to support the advocacy of policies that protect our cities from the negative effects of short-term rentals and to provide data that quantifies the impact of long-term rentals on housing and residential communities.
 
 ## 3. How was the data collected?  
-Inside Airbnb:
 The data used in the analysis were mainly from Inside Airbnb, which is independent. To be more specific, the website is not related to the official Airbnb site and is protected under a Creative Commons CC0 1.0 Universal (CCO 1.0) ‘Public Domain Dedication’ license. The data includes information such as the location, price, number of bedrooms, number of reviews, and other details about the listings. Moreover, the data from Inside Airbnb is typically collected through a combination of web scraping Airbnb's publicly available listings and analyzing this data for insights. Within Airbnb utilizes automated scripts to gather data from the Airbnb website in a methodical manner, with an emphasis on publicly accessible information from different listings.  Data is gathered via scraping and then assembled into a database.  This procedure involves organizing the data so that it can be easily analyzed and refining it by removing duplicates and fixing errors.
-Points of Interest (PoI) data from Open Street Map(OSM):
-The OSM POI points for London attractions were used in this study. Data for OpenStreetMap (OSM) is gathered using a range of techniques, mostly by volunteers in the community. These techniques include working with organizations, importing data, using GPS and manual surveys, and using local expertise. The data structure is made up of point data with attributes, such as geographic information, assigned to each data point.
-London Borough Boundaries:
-Official Ordnance Survey polygons showing Borough boundaries and reference code. Ordnance Survey is the British national mapping agency that provides geographic data for government, business, and individuals. Which is accessible from the London Datastore.
+
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
+According to the Airbnb project website (The Data, 2023), the location of a specific Airbnb on a map or in the data is 0 to 450 feet from the actual address because Airbnb listings’ location data is anonymized. As a result, minor errors may occur when plotting the locations of Airbnb. In addition, on the Inside Airbnb website, both booked and unavailable are classified into “unbookable nights” which may affect the calculation of occupancy rate because the availability of Airbnb is used in the algorithm in this study. Furthermore, the information supplied by Inside Airbnb represents a moment in time snapshot of the Airbnb listings which means that it is possible that some of the Airbnb listings in the dataset have been removed or that new listings have been added since the snapshots were taken. For instance, the accuracy of the review data obtained from Inside Airbnb dataset was questioned (Abdulkareem Alsudais, 2021) : The number of reviews associated with each listing in IA rises as a result of these instances of inaccurate data. There are very seldom instances where there are more false reviews associated with a listing than true and accurate reviews.
 
 ## 5. What ethical considerations does the use of this data raise? 
 Use of Scraped Data:
@@ -150,12 +131,6 @@ Impact on Airbnb Hosts:
 Although Inside Airbnb claims that No "private" information is being used. Names, photographs, listings and review details are all publicly displayed on the Airbnb site. However, research conclusions based on crawling information may affect the normal operation of landlords.
 Data Accuracy and Misrepresentation:
 Inside Airbnb data scraped from websites may not always be accurate or up-to-date. Relying on such data for research or policy-making could lead to decisions based on incomplete or misleading information. 
-OSM relies on a global network of volunteers to contribute and edit map data. While this decentralized approach ensures the broad coverage of OSM data, it also introduces challenges in ensuring data accuracy and consistency. Volunteers may not have access to all the necessary information or may misinterpret existing data, leading to inaccuracies in map representations. Moreover, the lack of clear guidelines for data contribution and review processes can exacerbate the issue of data bias.
-Limitations:
-OSM statistical method will affect the comprehensiveness and accuracy of the data to some extent, for example, it does not deeply classify the types and levels of attractions, As a result, some parks that are tourist destinations are not counted among the attractions. To reduce this impact, we checked popular attractions data with London Tourism to ensure that major attractions were taken into account.
-Airbnb listings in 2022 have dropped 21% since 2020, which represents 17,000 listings.
-The borough with the highest occupancy rate is Hillingdon, where the average Airbnb listing is taken around 17% of the year, probably as a result of its closeness to Heathrow Airport.
-Location information for listings are anonymized by Airbnb. In practice, this means the location for a listing on the map, or in the data will be from 0-450 feet (150 metres) of the actual address. Listings in the same building are anonymized by Airbnb individually, and therefore may appear "scattered" in the area surrounding the actual address.
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
 
