@@ -252,11 +252,120 @@ df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_va
 ```
 
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
-  
-  图表
 
-* airbnb 的空间分布 （聚集或分散）
+#### 图表-- airbnb 的空间分布 （聚集或分散）
 
+```{python}
+import geopandas as gpd
+# 读取borough数据
+# 替换这里的路径为你解压后.shp文件的实际路径
+# 读取.shp文件
+shapefile_path = '../data/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
+gdf_bor = gpd.read_file(shapefile_path)
+
+# 查看数据
+#print(gdf_bor.head())
+
+# Check the Projection and use the EPSG:27700 projected CRS
+#print(gdf_bor.crs)
+# gdf.to_crs('epsg:27700')
+```
+
+```{python}
+# convert lat/long to GeoSeries (converted the InsideAirbnb data to a GeoDataFrame)
+gdf_point = gpd.GeoDataFrame(df, 
+      geometry=gpd.points_from_xy(df.longitude, df.latitude, crs='epsg:4326'))
+# make sure that gdf_point and gdf_bor have the same projected CRS
+gdf_point=gdf_point.to_crs('epsg:27700')
+gdf_bor=gdf_bor.to_crs('epsg:27700')
+
+# Creates a new figure with specified number of
+# subplots (we'll see more of this later) and 
+# and the specified size (in inches by default).
+
+import matplotlib.pyplot as plt
+import geopandas as gpd
+
+# 创建子图
+fig, ax = plt.subplots(2, 2, figsize=(14, 13))
+
+# 绘制底图
+gdf_bor.plot(ax=ax[0,0], edgecolor='red', facecolor='white')
+gdf_bor.plot(ax=ax[0,1], edgecolor='red', facecolor='white')
+gdf_bor.plot(ax=ax[1,0], edgecolor='red', facecolor='white')
+
+# 添加矢量点数据
+gdf_point[gdf_point['local_or_company'] == 1].plot(ax=ax[0,0], color='green', alpha=0.3, markersize=1)
+gdf_point[gdf_point['local_or_company'] == 0].plot(ax=ax[0,1], color='orange', alpha=0.3, markersize=1)
+gdf_point.plot(ax=ax[1,0], color=gdf_point['local_or_company'].map({1: 'green', 0: 'orange'}), alpha=0.3 ,markersize=1)
+
+# 添加标题和图幅标号
+ax[0,0].set_title('Airbnbs of Local Hosts Map in London')
+ax[0,0].text(-0.1, 1.1, '(a)', transform=ax[0,0].transAxes)
+
+ax[0,1].set_title('Airbnbs of Company Map in London')
+ax[0,1].text(-0.1, 1.1, '(b)', transform=ax[0,1].transAxes)
+
+ax[1,0].set_title('Airbnbs Map in London')
+ax[1,0].text(-0.1, 1.1, '(c)', transform=ax[1,0].transAxes)
+
+# Set the x and y limits
+ax[0,0].set_xlim(501000,563000)
+ax[0,0].set_ylim(155000,202000)
+ax[0,1].set_xlim(501000,563000)
+ax[0,1].set_ylim(155000,202000)
+ax[1,0].set_xlim(501000,563000)
+ax[1,0].set_ylim(155000,202000)
+# 添加图例、比例尺和指北针到ax[1,1]
+
+from matplotlib.lines import Line2D
+legend_elements = [Line2D([0], [0], marker='o', color='w', label='Local Hosts', markersize=5, markerfacecolor='green'),
+                   Line2D([0], [0], marker='o', color='w', label='Airbnbs of Company', markersize=5, markerfacecolor='orange'), 
+                   Line2D([0], [0], color='red', lw=2, linestyle='-', label='Boundary Line of the Boroughs')]
+ax[1, 1].legend(handles=legend_elements, title='The Type of Airbnb')
+ax[1, 1].axis('off') 
+
+# 绘制比例尺和指北针（使用epsg:27700要麻烦一些）
+# 绘制比例尺
+def draw_scalebar(ax, xpos, ypos, length, unit='m', fontsize=10):
+    """
+    在指定的坐标轴上绘制线段比例尺。
+    
+    参数:
+    ax -- matplotlib的坐标轴对象
+    xpos, ypos -- 比例尺的起始位置（单位：米）
+    length -- 比例尺代表的实际长度（单位：米）
+    unit -- 单位标记（默认为米）
+    fontsize -- 字体大小
+    """
+    # 绘制比例尺线段
+    ax.plot([xpos, xpos + length], [ypos, ypos], color='black', lw=2)
+    # 绘制比例尺端点的小线
+    ax.plot([xpos, xpos], [ypos - 100, ypos + 100], color='black', lw=2)  # 端点线的长度为100米
+    ax.plot([xpos + length, xpos + length], [ypos - 100, ypos + 100], color='black', lw=2)
+
+    # 添加长度标注
+    ax.text(xpos + length / 2, ypos - 200, f'{length} {unit}', horizontalalignment='center', fontsize=fontsize)
+
+
+# 在适当的子图上绘制比例尺
+
+
+def draw_north_arrow(ax, x, y, arrow_length=0.1, text='N'):
+    # 绘制指向北方的箭头
+    ax.annotate(text, xy=(x, y + arrow_length), xytext=(x, y),
+                arrowprops=dict(facecolor='black', width=5, headwidth=15),
+                ha='center', va='bottom')
+# 假设 ax 是你的地图的Axes对象
+draw_north_arrow(ax[1, 1], x=0.95, y=0.05)
+
+# 设置整体标题
+fig.suptitle('Airbnbs Maps in London')
+
+# 保存图形
+
+plt.show()
+```
 
 ( 15 points; Answer due {{< var assess.group-date >}} )
 
@@ -570,8 +679,29 @@ plt.show()
 ```{python}
 # df_economy 经济列
 # count_points_in_polygon
-type(count_points_in_polygon)
-type(df_economy)
+
+borough_result = gpd.read_file(shapefile_path)
+gdf_result = gpd.GeoDataFrame(borough_result, geometry='geometry')
+```
+
+```{python}
+# df_other 
+# 32
+# -- neighbourhood
+# gdf_result
+# 32
+```
+
+```{python}
+# 使用 'id' 字段连接 DataFrame 和 GeoDataFrame
+merged_gdf = gdf_result.merge(df_other, left_on='NAME', right_on = 'neighbourhood')
+
+# 显示连接后的 GeoDataFrame
+type(merged_gdf)
+```
+
+```{python}
+merged_gdf.plot(column='local_economy_contribution_from_airbnb', cmap='Blues', legend=True, figsize=(10, 6), linewidths=0.1, edgecolor='grey')
 ```
 
 ## Sustainable Authorship Tools
