@@ -1,0 +1,736 @@
+---
+bibliography: bio.bib
+csl: harvard-cite-them-right.csl
+title: For Loop's Group Project
+execute:
+  echo: false
+format:
+  html:
+    theme:
+      - minty
+      - css/web.scss
+    code-copy: true
+    code-link: true
+    toc: true
+    toc-title: On this page
+    toc-depth: 2
+    toc_float:
+      collapsed: false
+      smooth_scroll: true
+  pdf:
+    include-in-header:
+      text: |
+        \addtokomafont{disposition}{\rmfamily}
+    mainfont: Spectral
+    sansfont: Roboto
+    monofont: JetBrainsMono-Regular
+    papersize: a4
+    geometry:
+      - top=25mm
+      - left=40mm
+      - right=30mm
+      - bottom=25mm
+      - heightrounded
+    toc: false
+    number-sections: false
+    colorlinks: true
+    highlight-style: github
+jupyter:
+  jupytext:
+    text_representation:
+      extension: .qmd
+      format_name: quarto
+      format_version: '1.0'
+      jupytext_version: 1.15.2
+  kernelspec:
+    display_name: Python 3 (ipykernel)
+    language: python
+    name: python3
+---
+
+```{python}
+import warnings
+warnings.filterwarnings('ignore')
+```
+
+## Declaration of Authorship {.unnumbered .unlisted}
+
+We, [For loop], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
+
+Date: 2023/12/19
+
+Student Numbers: 23086875, 23191686, 23149976, 22084169, 23130396
+
+## Brief Group Reflection
+
+| What Went Well  | What Was Challenging |
+| --------------  | -------------------- |
+| Data collection | Time allocation      |
+| Graph production| Data analysis         |
+
+## Priorities for Feedback
+
+The method form data analysis to policy making.
+
+```{=html}
+<style type="text/css">
+.duedate {
+  border: dotted 2px red; 
+  background-color: rgb(255, 235, 235);
+  height: 50px;
+  line-height: 50px;
+  margin-left: 40px;
+  margin-right: 40px
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(150,100,100);
+  text-align: center;
+}
+</style>
+```
+
+{{< pagebreak >}}
+
+# Research Question
+
+Topic 2: Impact of Airbnb on London’s Tourism Economy — Assuming that a certain percentage of tourist money will be spent locally, the extent to which the way in which tourist "money" is spent is likely to have a positive impact on areas with fewer tourists.
+
+# Response to Questions
+
+## 1. Who collected the data?
+The data of listing of Airbnb used in the project is mainly collected by Inside Airbnb(Inside Airbnb, 2023). 
+
+## 2. Why did they collect it?
+The goal of Inside Airbnb, a mission-driven activist project, is to create a platform to support the advocacy of policies that protect our cities from the negative effects of short-term rentals and to provide data that quantifies the impact of long-term rentals on housing and residential communities(Inside Airbnb, 2023).
+
+## 3. How was the data collected?  
+The data used in the analysis were mainly from Inside Airbnb, which is independent. To be more specific, the website is not related to the official Airbnb site and is protected under a Creative Commons CC0 1.0 Universal (CCO 1.0) ‘Public Domain Dedication’ license. The data includes information such as the location, price, number of bedrooms, number of reviews, and other details about the listings. Moreover, the data from Inside Airbnb is typically collected through a combination of web scraping Airbnb's publicly available listings and analyzing this data for insights. Within Airbnb utilizes automated scripts to gather data from the Airbnb website in a methodical manner, with an emphasis on publicly accessible information from different listings.  Data is gathered via scraping and then assembled into a database.  This procedure involves organizing the data so that it can be easily analyzed and refining it by removing duplicates and fixing errors.
+
+## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
+According to the Airbnb project website(Inside Airbnb, 2023), the location of a specific Airbnb on a map or in the data is 0 to 450 feet from the actual address because Airbnb listings’ location data is anonymized. As a result, minor errors may occur when plotting the locations of Airbnb. In addition, on the Inside Airbnb website, both booked and unavailable are classified into “unbookable nights” which may affect the calculation of occupancy rate because the availability of Airbnb is used in the algorithm in this study. Furthermore, the information supplied by Inside Airbnb represents a moment in time snapshot of the Airbnb listings which means that it is possible that some of the Airbnb listings in the dataset have been removed or that new listings have been added since the snapshots were taken. For instance, the accuracy of the review data obtained from Inside Airbnb dataset was questioned(Abdulkareem Alsudais, 2021): The number of reviews associated with each listing in IA rises as a result of these instances of inaccurate data. There are very seldom instances where there are more false reviews associated with a listing than true and accurate reviews.
+
+## 5. What ethical considerations does the use of this data raise? 
+Use of Scraped Data:
+The ethics of web scraping for data collection are complex. While the data is publicly available, the process of scraping and republishing raises questions about consent and the appropriate use of publicly available information.
+
+Impact on Airbnb Hosts:
+Although Inside Airbnb claims that No "private" information is being used. Names, photographs, listings and review details are all publicly displayed on the Airbnb site. However, research conclusions based on crawling information may affect the normal operation of landlords.
+
+Data Accuracy and Misrepresentation:
+Inside Airbnb data scraped from websites may not always be accurate or up-to-date. Relying on such data for research or policy-making could lead to decisions based on incomplete or misleading information. 
+
+## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
+### 6.1 Data wrangling
+In order to classified whether the host of Airbnb is local or not, a cluster analyse is used in the following. However, in the current Airbnb data, when a host has multiple Aribnb listings, the count of multiple listings of a host will be displayed multiple times in the 'calculated_host_listings_count' field in Airbnb's original csv. Therefore, in the pre-processing of clustering data, new dataframes need to be generated by counting according to the id of the landlord, and then the number of housing resources for each landlord is clustered.
+
+```{python}
+import os
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+```
+
+```{python}
+# loading data and data wrangling
+## loading data
+df = pd.read_csv("https://github.com/LiangWeiXian11/fsdsData/raw/main/listings.csv", low_memory=False)
+# df = pd.read_csv('../data/listings.csv', low_memory=False)
+
+## data wrangling
+### select the column of 'host_id' to make a new dataframe called df1
+df1 = df[['host_id']]
+num_rows = len(df1)
+### creat a new dataframe
+# to make a column called ones (I don't like to use groupby().count, as the if i groupby the 'host_id' then the other like 'name' 
+# that i select from df will show the count of 'host_id' that could be ambiguous)
+### create an array where each element is 1 using np.ones
+ones_array = np.ones((num_rows, 1))
+
+### convert the array to a DataFrame
+df_ones = pd.DataFrame(ones_array, columns=['ones'])
+## make every lines' value of 'one' to be int
+df1['ones'] = df_ones['ones'].astype(int)
+### convert the values in the 'one' column of each row to integers
+grouped_df1 = df1.groupby('host_id').sum()
+grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
+```
+
+### 6.2 Cluster Preprocessing - Gaussian Mixture Model
+
+Initially, when using k-means cluster to classify the type of Airbnb host, the outcome does not satisfy with our prediction. That is because k-means always tried to minimize the sum of the squares of the errors within the cluster and therefore might sometimes achieve local rather than global optimality. The value of the number of Airbnb listings owned by each host has a large distribution range, and most of the values have a maximum frequecy value between 1 and 3, so it is possible that the Gaussian mixture model based on probability distribution can obtain better clustering effect.
+
+```{python}
+# do clustering analysis using Gaussian Mixture Model 
+## setting different n_components value sizes to produce different clusters analyses rationality
+from sklearn.mixture import GaussianMixture
+
+# grouped_df1 is your DataFrame, containing the column 'counts'
+# Convert the 'counts' column into a format suitable for clustering (two-dimensional array).
+X = grouped_df1[['counts']].values
+
+# Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
+gmm = GaussianMixture(n_components=2, random_state=0)
+
+# Fit and predict the data
+grouped_df1['cluster'] = gmm.fit_predict(X)
+
+# View the clustering results
+# print(grouped_df1.head())
+
+# Check the statistics for each cluster
+# print(grouped_df1.groupby('cluster')['counts'].describe())
+
+## maybe 595 is the outlier, so drop it and try different n_components value sizes
+# Find the index of the maximum value in the 'cluster' column
+max_index = grouped_df1['counts'].idxmax()
+
+# Delete this row
+grouped_df1 = grouped_df1.drop(max_index)
+
+## try the GMM to do clustering again
+# Convert the 'counts' column into a format suitable for clustering (two-dimensional array)
+X = grouped_df1[['counts']].values
+
+# Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
+gmm = GaussianMixture(n_components=3, random_state=0)
+
+# Fit the data and make predictions
+grouped_df1['local_or_company'] = gmm.fit_predict(X)
+
+# View the clustering results
+# print(grouped_df1.head())
+
+# Check the statistics for each cluster
+# print(grouped_df1.groupby('local_or_company')['counts'].describe())
+```
+
+### 6.3 Cluster Results Presentation
+
+```{python}
+## Define based on facts
+# Replace values in the 'local_or_company' column that are equal to 0 and 2 with 1, and replace other values with 0
+grouped_df1['local_or_company'] = np.where(grouped_df1['local_or_company'] == 0|2, 1, 0)
+
+## plot again for visulisation and get the max acount of Airbnbs owned by local landlords
+# Set the plotting style
+sns.set(style="whitegrid")
+
+# Create a scatter plot where the x-axis is the index, the y-axis is the value of 'calculated_host_listings_count,' and the color is determined by cluster labels
+plt.figure(figsize=(9, 4))
+sns.scatterplot(x=grouped_df1.index, y=grouped_df1['counts'], hue=grouped_df1['local_or_company'], palette='viridis')
+
+# Select rows in df that are local landlords, then find the maximum value of the 'calculated_host_listings_count' column from the filtered data. This calculates the maximum number of houses owned by local landlords
+# First, select the rows where the value in the 'local_or_company' column is 1, representing local landlords
+filtered_rows = grouped_df1[grouped_df1['local_or_company'] == 1]
+
+# Then, find the maximum value in the 'b' column among these rows
+max_value_in_local_hosts_GMM = filtered_rows['counts'].max()
+
+
+# Add a red dashed line at y=max_value_in_local_hosts, and label it as 'max value of the number of Airbnbs owned by local landlords
+plt.axhline(y=max_value_in_local_hosts_GMM, color='red', linestyle='--', label=max_value_in_local_hosts_GMM)
+
+# Add chart title and labels
+plt.title('Figure 1 Airbnbs Counts of different types of hosts')
+plt.xlabel('id')
+plt.ylabel('the numeber of Airbnbs')
+
+# Display the legend and the chart
+plt.legend(title='The type of hosts')
+plt.show()
+
+# Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
+df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
+# df.head(5)
+```
+
+Max value in local hosts is: 5. 
+
+### 6.4 Visualizing Spatial Distribution of Airbnb Listings
+
+```{python}
+import geopandas as gpd
+# read shapefile
+shapefile_path = '../data/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
+gdf_bor = gpd.read_file(shapefile_path)
+
+
+# Check the Projection and use the EPSG:27700 projected CRS
+#print(gdf_bor.crs)
+# gdf.to_crs('epsg:27700')
+
+# convert lat/long to GeoSeries (converted the InsideAirbnb data to a GeoDataFrame)
+gdf_point = gpd.GeoDataFrame(df, 
+      geometry=gpd.points_from_xy(df.longitude, df.latitude, crs='epsg:4326'))
+# make sure that gdf_point and gdf_bor have the same projected CRS
+gdf_point=gdf_point.to_crs('epsg:27700')
+gdf_bor=gdf_bor.to_crs('epsg:27700')
+
+# Creates a new figure with specified number of
+# subplots (we'll see more of this later) and 
+# and the specified size (in inches by default).
+
+import matplotlib.pyplot as plt
+import geopandas as gpd
+
+fig, ax = plt.subplots(2, 2, figsize=(13, 8), edgecolor='black', linewidth=1)
+
+
+gdf_bor.plot(ax=ax[0,0], edgecolor='red', facecolor='white')
+gdf_bor.plot(ax=ax[0,1], edgecolor='red', facecolor='white')
+gdf_bor.plot(ax=ax[1,0], edgecolor='red', facecolor='white')
+
+
+gdf_point[gdf_point['local_or_company'] == 1].plot(ax=ax[0,0], color='green', alpha=0.3, markersize=1)
+gdf_point[gdf_point['local_or_company'] == 0].plot(ax=ax[0,1], color='orange', alpha=0.3, markersize=1)
+gdf_point.plot(ax=ax[1,0], color=gdf_point['local_or_company'].map({1: 'green', 0: 'orange'}), alpha=0.3 ,markersize=1)
+
+
+ax[0,0].set_title('Airbnbs of Local Hosts in London')
+ax[0,0].text(-0.1, 1.1, '(a)', transform=ax[0,0].transAxes)
+
+ax[0,1].set_title('Airbnbs of Company in London')
+ax[0,1].text(-0.1, 1.1, '(b)', transform=ax[0,1].transAxes)
+
+ax[1,0].set_title('Airbnbs in London')
+ax[1,0].text(-0.1, 1.1, '(c)', transform=ax[1,0].transAxes)
+
+# Set the x and y limits
+ax[0,0].set_xlim(501000,563000)
+ax[0,0].set_ylim(155000,202000)
+ax[0,1].set_xlim(501000,563000)
+ax[0,1].set_ylim(155000,202000)
+ax[1,0].set_xlim(501000,563000)
+ax[1,0].set_ylim(155000,202000)
+
+
+from matplotlib.lines import Line2D
+legend_elements = [Line2D([0], [0], marker='o', color='w', label='Local Hosts', markersize=5, markerfacecolor='green'),
+                   Line2D([0], [0], marker='o', color='w', label='Airbnbs of Company', markersize=5, markerfacecolor='orange'), 
+                   Line2D([0], [0], color='red', lw=2, linestyle='-', label='Boundary Line of the Boroughs')]
+ax[1, 1].legend(handles=legend_elements, title='The Type of Airbnb')
+ax[1, 1].axis('off') 
+
+def draw_north_arrow(ax, x, y, arrow_length=0.1, text='N'):
+
+    ax.annotate(text, xy=(x, y + arrow_length), xytext=(x, y),
+                arrowprops=dict(facecolor='black', width=5, headwidth=15),
+                ha='center', va='bottom')
+draw_north_arrow(ax[1, 1], x=0.95, y=0.05)
+
+ax[0,0].tick_params(axis='both', labelsize=8)
+ax[0,1].tick_params(axis='both', labelsize=8)
+ax[1,0].tick_params(axis='both', labelsize=8)
+ax[1,1].tick_params(axis='both', labelsize=8)
+fig.suptitle('Figure 2 Airbnb Map in London')
+
+plt.show()
+```
+
+The spatial map above shows the distributions of different types of hosts. For instance, it can be viewed that most of the hosts of London Airbnb are local. In addition, the distribution of Local hosts and company host are similar which is they are gathering near the center of London. Therefore, regulation of Airbnb should be focused on central London.
+
+```{python}
+import pandas as pd
+
+def summarize_room_types():
+    # Load the CSV file directly using the file name
+    # data = pd.read_csv('../data/listings.csv')
+    data = pd.read_csv("https://github.com/LiangWeiXian11/fsdsData/raw/main/listings.csv", low_memory=False)
+
+    # Calculate the count and percentage of each room type
+    room_type_summary = data['room_type'].value_counts().to_frame()
+    room_type_summary.columns = ['Count']
+    room_type_summary['Percentage'] = (room_type_summary['Count'] / room_type_summary['Count'].sum()) * 100
+
+    return room_type_summary
+
+# Generate the summary and print it
+summary = summarize_room_types()
+print(summary)
+```
+
+The table above shows the percentage of different types of Airbnb in London. It can be observed that the type of "Entire home" owns the highest proportion. As a result, as indicated by several researches, the decrease of long-term rental markets are decreased and the rental prices increase. To reduce the impact of short-term rental to long-term rental, a 90-day limited policy was published which serves to prevent long-term rental properties from being turned into year-round vacation rentals and keeps them accessible for locals. However, there are several discussion on the policy. A variety of stakeholders have expressed support for and opposition to the Airbnb 90-day regulation. Although the regulation aims to address worries about how short-term rentals affect local communities and property markets, hosts and small companies may suffer as a result of it. Therefore, in order to ensure that the 90-day rule and other short-term rental restrictions accomplish their intended purposes without inadvertently harming hosts or local economies, authorities must carefully consider the costs and advantages of enacting them. The effectiveness of laws governing short-term rentals, such as the 90-day Airbnb rule, ultimately rests on finding the ideal balance between fostering tourism and maintaining reasonably priced housing for locals. Policymakers, hosts, and communities will all continue to face difficulties in striking this balance, while the discussion over legislation pertaining to short-term rentals rages on.
+
+## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
+
+In our study, we wanted to determine the influence of Airbnb to non-tourism areas. Therefore, the local economy is calculated which contains tourist expenditure and landlord feedback economy is determined in the following trunks. An "Occupancy rate" model carried out from research made by the Budget and Legislative Analyst’s Office in San Francisco using the data from Inside Airbnb is mainly used.
+
+### 7.1 Tourist expenditure calculation
+
+```{python}
+# Assuming DataFrame is named 'df'
+# Replace 'df' with the actual name of your DataFrame variable
+
+import re
+```
+
+The review rate and the average stay nights are set to be 50% and 3 days respectively<sup>1</sup>.
+
+```{python}
+# Setting the model parameters
+review_rate = 0.5
+average_days = 3
+```
+
+Furthermore, the trunk below first calculated the quantity of tourists of each Airbnb annually (assumption had been made that one bed for one person) with the "Occupancy rate" model and then multiply with a spend coefficient (43 pounds) which carried out by a research by Airbnb(Inside Airbnb, no date a) "The average Airbnb visitor in the UK spends £100 a day, of which 43% is spent in the neighborhood where they are staying."
+
+```{python}
+# Selecting listings where availability_365 is greater than 0
+df_geq_0 = df[df.availability_365 > 0]
+
+df_other = df
+
+df_other = df_other.drop('neighbourhood_group', axis=1)
+# Calculating estimated annual nights
+
+condition = df.availability_365 > 0
+estimated_nights = (
+    (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
+) * df_geq_0.availability_365
+df_other.loc[condition, 'estimated_annual_nights'] = estimated_nights
+
+#df_other.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
+#    (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
+#) * df_geq_0.availability_365
+
+
+# Setting estimated annual income to 0 for listings with availability_365 equals 0
+df_other.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
+
+# Calculating estimated annual income
+df_other.loc[df.availability_365 > 0, 'estimated_annual_income'] = df_other['estimated_annual_nights'] * df_geq_0.price
+
+# Filling any missing values in both new columns with 0
+df_other[['estimated_annual_nights', 'estimated_annual_income']] = df_other[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+
+#df_other['local_or_company'].max()
+
+# Extract the number of beds from the 'name' column.
+def extract_beds(name):
+    match = re.search(r'(\d+)\s+beds?', name)
+    return int(match.group(1)) if match else 0
+
+df_other['number_of_beds'] = df['name'].apply(extract_beds)
+
+# Calculate 'tourists_expenditure'
+df_other['tourists_expenditure'] = df_other['number_of_beds'] * df_other['estimated_annual_nights'] * 100
+#df_other.head(4)
+```
+
+### 7.2 Local economic multiplier calculation
+
+A LM3 model is applied which assumed that When 1 pound is spent with a local vendor, the local economy benefits by 1.76 pounds, but only by 36 pence when it is spent elsewhere(Source: LM3localmultiplier).
+
+```{python}
+# applying local economic multiplier
+# Model coefficient
+coef1 = 1.76
+coef2 = 0.36
+
+# local landlords using 1.76, real estate company landlord using 0.36
+df_other.loc[df_other.local_or_company==1,'value_to_local_economy']=df_other.loc[df_other.local_or_company==1,'estimated_annual_income']*coef1
+df_other.loc[df_other.local_or_company==0,'value_to_local_economy']=df_other.loc[df_other.local_or_company==0,'estimated_annual_income']*coef2
+
+# Update 'value_to_local_economy' by adding the product of 'tourists_expenditure' and 0.43)
+# df_other['value_to_local_economy'] = df_other['tourists_expenditure'] * 0.43 + df_other['value_to_local_economy']
+```
+
+```{python}
+df_other = df_other.groupby('neighbourhood')['value_to_local_economy'].sum().reset_index(name='local_economy_contribution_from_airbnb')
+df_other['local_economy_contribution_from_airbnb'] = df_other['local_economy_contribution_from_airbnb'].round(2)
+
+# df_other.head(4)
+# Generate a new CSV file to display the local economy contribution from Airbnb tourism for each borough.
+# df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
+```
+
+### 7.3 Cluster for tourism borough and non-tourism borough
+
+Spatial data of London's attractions were acquired using OSM and mapped on the boundaries of London borough. The number of attractions contained in each borough was analyzed by clustering to distinguish non-tourist boroughs. As shown in the Figure，Lambeth, Southwark, Richmond upon Thames, Kensington and Chelsea, Westminster, Camden, and Tower Hamlets own more tourist attracions，therefore they are classified as tourist area and the other boroughs are classified as non-tourist areas. The later analysis mainly focus on the impact of airbnb visitors to non-tourist areas.
+
+```{python}
+# package
+import json
+import pandas as pd
+from shapely.geometry import Point
+import geopandas as gpd
+import pandas as pdpip
+```
+
+```{python}
+## Read London borough boundary 
+
+#shapefile_path = '../data/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
+shapefile_path = 'https://github.com/LiangWeiXian11/fsdsData/raw/main/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
+
+file_path = '../data/export.geojson'
+
+# load GeoJSON file
+with open(file_path, 'r', encoding='utf-8') as file:
+    geojson_data = json.load(file)
+    
+# Create a list to store coordinate
+point_coordinates = []
+
+# Iterate over each feature in the feature set
+for feature in geojson_data.get('features', []):
+    # Check whether the geometry type is a point
+    if feature['geometry']['type'] == 'Point':
+        # Extract coordinates
+        coordinates = feature['geometry']['coordinates']
+        point_coordinates.append(coordinates)
+```
+
+```{python}
+points = [Point(x, y) for x, y in point_coordinates]
+
+# create DataFrame
+df = pd.DataFrame(point_coordinates, columns=['Longitude', 'Latitude'])
+
+# use DataFrame and Points create GeoDataFrame
+attraction_gdf = gpd.GeoDataFrame(df, geometry=points)
+```
+
+```{python}
+# load Shapefile
+borough = gpd.read_file(shapefile_path)
+attraction_gdf.set_crs(epsg=4326, inplace=True)
+
+# Ensure use the same cr
+attraction_gdf = attraction_gdf.to_crs(borough.crs)
+```
+
+```{python}
+# Calculate the number of attraction points contained in each borough
+
+
+# Use spatial joins to count the number of points each borough contains
+point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
+
+# Calculate the number of points contained in each borough
+count_points_in_polygon = point_in_polygon.groupby('GSS_CODE').size().reset_index(name='point_count')
+
+# spatial join
+point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
+
+# groupby borough and count
+count_points = point_in_polygon.groupby('GSS_CODE').size()
+
+# Converts the count result to a DataFrame and resets the index
+count_points_df = count_points.reset_index(name='point_count')
+
+# Ensure that all polygons are included in the statistics
+count_points_in_polygon = borough.merge(count_points_df, on='GSS_CODE', how='left')
+
+# Sets the number of points for polygons that do not contain points to zero
+count_points_in_polygon['point_count'].fillna(0, inplace=True)
+
+# print
+# print(count_points_in_polygon[['GSS_CODE', 'point_count']])
+```
+
+```{python}
+# Attraction count cluster analysis
+
+
+# Extract the point count as the clustering feature
+X = count_points_in_polygon[['point_count']].values
+
+n_clusters = 3
+
+kmeans = KMeans(n_clusters=n_clusters, random_state=44)
+kmeans.fit(X)
+
+# Adds the cluster tag to the original DataFrame
+count_points_in_polygon['cluster'] = kmeans.labels_
+
+# Find the index with the smallest point count
+min_point_count_cluster = kmeans.labels_[np.argmin(X)]
+
+# Reassign the cluster label so that the cluster of minimum point_count is 1
+count_points_in_polygon['cluster'] = [(label + 1 if label >= min_point_count_cluster 
+                                       else label) for label in count_points_in_polygon['cluster']]
+count_points_in_polygon['cluster'] = count_points_in_polygon['cluster'].replace(min_point_count_cluster, 1)
+```
+
+```{python}
+# Borough Attraction Count visualization
+# Cluster plot
+
+# Set color: cluster equals 1 for one color and the rest for another color
+colors = count_points_in_polygon['cluster'].map(lambda x: 'silver' if x == 1 else 'grey')
+
+
+count_points_in_polygon.plot(color=colors, figsize=(9, 5))
+
+plt.title('Figure 3 Borough cluster')
+plt.scatter([], [], color='silver', label='non tourism borough')
+plt.scatter([], [], color='grey', label='tourism borough')
+plt.legend(title='Clusters')
+
+
+plt.show()
+```
+
+```{python}
+# Select non tourism boroughs
+
+non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 1]
+```
+
+In conclusion, the graph above shows the tourism borough and non-tourism borough.
+
+### 7.4 Local economy plotting
+
+The following part uses graphs to show the local economy which brings by the Airbnb to London goroughs.
+
+```{python}
+import matplotlib.pyplot as plt
+import geopandas as gpd
+#expenditure_point = pd.read_csv('../data/updated_data.csv')
+expenditure_point = pd.read_csv('https://github.com/LiangWeiXian11/fsdsData/raw/main/updated_data.csv')
+
+# expenditure_point = df_other
+selected_expenditure_point_columns = expenditure_point[['id','latitude', 'longitude', 'tourists_expenditure']]
+selected_expenditure_point_columns['latitude'] = pd.to_numeric(selected_expenditure_point_columns['latitude'], errors='coerce')
+selected_expenditure_point_columns['longitude'] = pd.to_numeric(selected_expenditure_point_columns['longitude'], errors='coerce')
+
+selected_expenditure_point_columns.dropna(inplace=True)
+# convert lat/long to GeoSeries (converted the InsideAirbnb data to a GeoDataFrame)
+expenditure_gdf = gpd.GeoDataFrame(selected_expenditure_point_columns, 
+      geometry=gpd.points_from_xy(selected_expenditure_point_columns.longitude, selected_expenditure_point_columns.latitude, crs='epsg:4326'))
+
+# plot and reproject it
+
+expenditure_gdf = expenditure_gdf.to_crs('epsg:27700')
+# print(expenditure_gdf.crs)
+
+expenditure_non = gpd.sjoin(expenditure_gdf, non_tourism_borough, predicate='within')
+# make sure GeoDataFrame to use the same CRS
+expenditure_non = expenditure_non.to_crs(non_tourism_borough.crs)
+```
+
+```{python}
+grouped_data = expenditure_non.groupby('GSS_CODE')['tourists_expenditure'].sum().reset_index()
+merged_data = borough.merge(grouped_data, on='GSS_CODE') 
+# df_economy 
+# count_points_in_polygon
+borough_result = gpd.read_file(shapefile_path)
+gdf_result = gpd.GeoDataFrame(borough_result, geometry='geometry')
+# use 'id' columns DataFrame and GeoDataFrame
+merged_gdf = non_tourism_borough.merge(df_other, left_on='NAME', right_on = 'neighbourhood')
+# merged_gdf.plot(column='local_economy_contribution_from_airbnb', cmap='Blues', legend=True, figsize=(10, 6), linewidths=0.1, edgecolor='grey')
+
+grouped_data = expenditure_non.groupby('GSS_CODE')['tourists_expenditure'].sum().reset_index()
+merged_data = borough.merge(grouped_data, on='GSS_CODE')
+merged_data['total_money'] = merged_data['tourists_expenditure'] + merged_gdf['local_economy_contribution_from_airbnb']
+```
+
+```{python}
+merged_data=merged_data.to_crs('epsg:27700')
+merged_gdf=merged_gdf.to_crs('epsg:27700')
+#  Build a graph with one row three columns
+fig, axes = plt.subplots(3, 1, figsize=(8, 14), edgecolor='black', linewidth=1)
+
+#  merged_data -- 'tourists_expenditure' column，'plasma_r' colour
+merged_data.plot(column='tourists_expenditure', ax=axes[0], legend=True,
+                 cmap='Greens')
+
+#  merged_gdf -- 'local_economy_contribution_from_airbnb'  'Blues' colour
+merged_gdf.plot(column='local_economy_contribution_from_airbnb', ax=axes[1], legend=True,
+                cmap='Blues')
+
+# merged_data -- 'tourists_expenditure' -- 'plasma_r' 
+merged_data.plot(column='total_money', ax=axes[2], legend=True,
+                 cmap='plasma_r')
+
+axes[0].set_title('Tourist Expenditure to neighbourhood', fontsize=8)
+axes[1].set_title('Host Economic Contribution to neighbourhood', fontsize=8)
+axes[2].set_title('Total Economic Contribution of Airbnb', fontsize=8)
+
+axes[0].text(-0.1, 1.09, '(a)', transform=axes[0].transAxes)
+axes[1].text(-0.1, 1.09, '(b)', transform=axes[1].transAxes)
+axes[2].text(-0.1, 1.09, '(c)', transform=axes[2].transAxes)
+
+axes[0].tick_params(axis='both', labelsize=8)
+axes[1].tick_params(axis='both', labelsize=8)
+axes[2].tick_params(axis='both', labelsize=8)
+
+
+for ax in axes:
+    for spine in ax.spines.values():
+        spine.set_edgecolor('black')
+        spine.set_linewidth(1)
+
+plt.subplots_adjust(wspace=0.5)
+
+# add the map title
+fig.text(0.5, 0.94, 'Figure 4 Economy Contribution of Airbnb Toutist', ha='center', va='top', fontsize=13)
+
+
+plt.show()
+```
+
+Through the occupancy rate model, tourist consumption model and the spatial distribution of Airbnb, the direct economic contribution of Airbnb tourists to each borough can be estimated, ranging from 1.15 million to 7.79million. Once again, we make a cluster analysis based on tourist spending, which can be divided into regions with high, moderate and low economic contributions. From the spatial distribution, it can be seen that tourists contribute more to the economy of the city center and the borough near the scenic spot, but less to the economy of the suburb.
+
+### 7.5 Possible policy-making based the study：
+
+To address this issue and promote economic activity in less-visited areas, consider implementing a policy that provides financial incentives or grants to Airbnb hosts operating in non-tourist, non-hotspot regions. This could include tax incentives for properties that significantly contribute to the local economy.
+
+Dynamic Tourist Taxation: Implement a tourist tax that varies based on the borough and the time of year, reflecting the varying impact of tourism across the city. This tax could be higher in tourist-heavy periods and areas, and lower in non-tourist areas. 
+
+Data Sharing Agreements: Suggest that local authorities establish agreements with platforms like Airbnb for data sharing to monitor and effectively manage the impact of short-term rentals on housing and the local economy.
+
+### 7.6 Limitation
+
+Deviation between the Estimated model and actual data: In our analysis, 1) we rely on the officially recommended occupancy rate model to estimate annual revenue and other related variables. This may cause bias, mainly because the model cannot fully capture all the complex factors affecting occupancy, such as seasonal changes, market dynamics, competitive environment and rapid changes in customer preferences. 2) We apply a generalized local economic multiplier. Although this is the multiplier officially announced by the UK, as the city and borough change, the multiplier will also change due to different economic and social factors. 3) We used the per traveler local spending amount reported by Airbnb UK insights report. However, due to differences in tourists’ consumption levels and consumption preferences, this amount will vary greatly. Although these models and data are widely accepted by academics and officials, they often deviate from real-world data in practical applications.
+limitation:
+
+Inaccuracies in data processing: When processing data, we spatially mapped tourist attractions onto the administrative divisions of city boroughs. A potential issue arises in the spatial mapping of tourist attractions, particularly those located on the demarcation lines between boroughs. This situation may result in the arbitrary assignment of these attractions to one of the adjacent boroughs, consequently introducing a degree of spatial inaccuracies into our dataset.
+
+Limitations of technology and analytical methods: Data science techniques and methods are constantly evolving, but they also have their limitations. Especially when interpreting big data or using complex algorithms, there may be a risk of misunderstanding or misuse.
+
+The map is provided which shows the influence of local economy of non-tourism boroughs from Airbnb. Moreover, it can be viewed that non-tourism boroughs which near the center of city London tends to have higher rate of economy contribution. Therefore, the relationship of high local economy and non-tourism Airbnb is not significant. However, the study indeed give out an overview of local economy contributed from Airbnb. Based on the study, several policies which focused on short-term rental can be adjusted. For example, the 90-days limit policy can be extended for some non-tourism areas because some short-term rental Airbnb can contribute to local economy.
+
+## References
+
+Airbnb, no date b. Airbnb UK insights report. [online] Available at: https://www.airbnbcitizen.com [Accessed 19 Dec 2023].
+
+Alsudais, A., 2021. Incorrect data in the widely used Inside Airbnb dataset. Decision Support Systems, 141, Article 113453. Available at: https://doi.org/10.1016/j.dss.2020.113453 [Accessed 10 Dec 2023].
+
+Cerna Silovska, H. and Kolarikova, J., 2016. Observation and assessment of local economic development with regard to the application of the local multiplier. European Planning Studies, 24(11), pp.1978-1994. Available at: https://doi.org/10.1080/09654313.2016.1233941 [Accessed 1 Dec 2023].
+
+Domanski, B. and Gwosdz, K., 2010. Multiplier Effects in Local and Regional Development. Volume 29(2), pp.27-37. Available at: https://doi.org/10.2478/v10117-010-0012-7 [Accessed 1 Dec 2023].
+
+Dwyer, L., Forsyth, P. and Dwyer, W., 2020. The Economic Contribution of Tourism. In: Tourism Economics and Policy. 1st ed. [ebook] Channel View Publications, pp.239-279. Available at: ISBN 9781845417345 [Accessed 20 Nov 2023].
+
+Falk, M., Larpin, B. and Scaglione, M., 2019. The role of specific attributes in determining prices of Airbnb listings in rural and urban locations. International Journal of Hospitality Management, 83, pp.132-140. Available at: https://doi.org/10.1016/j.ijhm.2019.04.023 [Accessed 26 Nov 2023].
+
+Inside Airbnb, no date a. Available at: http://insideairbnb.com/get-the-data/ [Accessed 18 Dec 2023].
+
+Gelan, A., 2003. Local economic impacts: The British Open. *Annals of Tourism Research*, 30(2), pp.406-425. Available at: https://doi.org/10.1016/S0160-7383(02)00098-1 [Accessed 21 Nov 2023].
+
+Guttentag, D., 2019. Progress on Airbnb: a literature review. Journal of Hospitality and Tourism Technology, 10(4), pp.814-844. Available at: https://doi.org/10.1108/JHTT-08-2018-0075 [Accessed 20 Nov 2023].
+
+LM3 Online. (Accessed November 20, 2023). About LM3 Online. Available at: https://www.lm3online.com/about.
+
+Olsen, W., 2011. Collecting Qualitative Data. In: Data Collection: Key Debates and Methods in Social Research. 1st ed. [ebook] SAGE Publications, pp.31-92. Available at: ISBN 9781446254189 [Accessed 18 Nov 2023].
+
+Pasquinelli, C. and Bellini, N., 2017. Global Context, Policies and Practices in Urban Tourism: An Introduction. In: N. Bellini and C. Pasquinelli, ed., Tourism in the City. 1st ed. Cham: Springer, pp.10-32. Available at: https://doi.org/10.1007/978-3-319-26877-4_1 [Accessed 25 Nov 2023].
+
+Rey, S., Arribas-Bel, D. and Wolf, L.J., 2023. Geographic Data Science with Python. Part II - Spatial Data Analysis. 1st ed. [online] Chapman & Hall. Available at: https://geographicdata.science/book/intro_part_ii.html [Accessed 30 Nov 2023].
+
+Shabrina, Z., Arcaute, E. and Batty, M., 2022. Airbnb and its potential impact on the London housing market. Urban Studies, 59(1), pp.197-221. Available at: https://doi.org/10.1177/0042098020970865 [Accessed 25 Nov 2023].
+
+So, K.K.F., Oh, H. and Min, S., 2018. Motivations and constraints of Airbnb consumers: Findings from a mixed-methods approach. Tourism Management, 67, pp.224-236. Available at: https://doi.org/10.1016/j.tourman.2018.01.009 [Accessed 1 Dec 2023].
+
+Thulin, P., 2015. Local Multiplier and Economic Base Analysis. In: C. Karlsson, M. Andersson and T. Norman, ed., Handbook of Research Methods and Applications in Economic Geography, 1st ed. Northampton, MA: Edward Elgar Publishing, pp.213-234. Available at: https://doi.org/10.4337/9780857932679 [Accessed 25 Nov 2023].
+
+## Sustainable Authorship Tools
+
+Your QMD file should automatically download your BibTeX file. We will then re-run the QMD file to generate the output successfully.
+
+Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
