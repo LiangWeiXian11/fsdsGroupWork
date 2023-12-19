@@ -88,30 +88,6 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 
 # Response to Questions
 
-```{python}
-import os
-import pandas as pd
-import matplotlib.pyplot as plt
-from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
-```
-
-```{python}
-host = 'https://orca.casa.ucl.ac.uk'
-path = '~jreades/data'
-file = '2022-09-10-listings.csv.gz'
-url  = f'{host}/{path}/{file}'
-local_url = f'../data/{file}'
-
-
-#if os.path.exists(file):
-#  df = pd.read_csv(file, compression='gzip', low_memory=False)
-#else: 
-#  df = pd.read_csv(url, compression='gzip', low_memory=False)
-#    # 下载该文件到本地 的data文件夹 -- lwx
-#  df.to_csv(local_url)
-```
-
 ## 1. Who collected the data?
 The data of listing of Airbnb used in the project is mainly collected by Inside Airbnb (Inside Airbnb 2023) . 
 
@@ -145,6 +121,9 @@ import os
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
 ```
 
 #### 数据读取
@@ -177,7 +156,6 @@ grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
 ```{python}
 ## better know the characteristics of the data and find that maybe Gaussian Mixture Model fit the data
 # check data using Kernel Density Estimate (KDE) plot
-grouped_df1.counts.plot.kde(xlim=(0,20)); #kernel density estimate plot
 ```
 
 ```{python}
@@ -215,7 +193,7 @@ grouped_df1 = grouped_df1.drop(max_index)
 ## try the GMM to do clustering again
 # Convert the 'counts' column into a format suitable for clustering (two-dimensional array)
 X = grouped_df1[['counts']].values
-1
+
 # Create a GMM (Gaussian Mixture Model) instance with the number of clusters set to 2
 gmm = GaussianMixture(n_components=3, random_state=0)
 
@@ -289,6 +267,7 @@ df.to_csv('testBefore.csv', index=False)
 
 ::: {.duedate}
 
+
 ### 计算当地经济  path 1 economy 
 (定量计算当地经济--local economy mutiplier )
 rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
@@ -314,7 +293,7 @@ df_other = df
 
 df_other = df_other.drop('neighbourhood_group', axis=1)
 # Calculating estimated annual nights
-df_other.to_csv('testAfter.csv', index=False)
+
 condition = df.availability_365 > 0
 estimated_nights = (
     (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
@@ -352,7 +331,7 @@ def extract_beds(name):
 df_other['number_of_beds'] = df['name'].apply(extract_beds)
 
 # Calculate 'tourists_expenditure'
-df_other['tourists_expenditure'] = df['number_of_beds'] * df['estimated_annual_nights'] * 100
+df_other['tourists_expenditure'] = df_other['number_of_beds'] * df_other['estimated_annual_nights'] * 100
 df_other.head(4)
 ```
 
@@ -365,11 +344,11 @@ coef1 = 1.76
 coef2 = 0.36
 
 # local landlords using 1.76, real estate company landlord using 0.36
-df_other.loc[df.local_or_company==1,'value_to_local_economy']=df.loc[df.local_or_company==1,'estimated_annual_income']*coef1
-df_other.loc[df.local_or_company==0,'value_to_local_economy']=df.loc[df.local_or_company==0,'estimated_annual_income']*coef2
+df_other.loc[df_other.local_or_company==1,'value_to_local_economy']=df_other.loc[df_other.local_or_company==1,'estimated_annual_income']*coef1
+df_other.loc[df_other.local_or_company==0,'value_to_local_economy']=df_other.loc[df_other.local_or_company==0,'estimated_annual_income']*coef2
 
 # Update 'value_to_local_economy' by adding the product of 'tourists_expenditure' and 0.43)
-df_other['value_to_local_economy'] = df['tourists_expenditure'] * 0.43 + df['value_to_local_economy']
+df_other['value_to_local_economy'] = df_other['tourists_expenditure'] * 0.43 + df_other['value_to_local_economy']
 ```
 
 ```{python}
@@ -379,11 +358,6 @@ df_other['local_economy_contribution_from_airbnb'] = df_other['local_economy_con
 df_other.head(4)
 # Generate a new CSV file to display the local economy contribution from Airbnb tourism for each borough.
 # df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
-```
-
-```{python}
-df.head(5)
-# dataframe -- local_economy_contribution_from_airbnb + neighbourhood
 ```
 
 ### 旅游区聚类  path 2 tourism areas
@@ -515,11 +489,11 @@ count_points_in_polygon['cluster'] = count_points_in_polygon['cluster'].replace(
 
 
 # 可视化聚类结果（如果适用）
-plt.scatter(count_points_in_polygon['GSS_CODE'], count_points_in_polygon['point_count'], c=count_points_in_polygon['cluster'])
-plt.xlabel('GSS_CODE')
-plt.ylabel('Point Count')
-plt.title('Cluster Analysis of Point Counts in Polygons')
-plt.show()
+#plt.scatter(count_points_in_polygon['GSS_CODE'], count_points_in_polygon['point_count'], c=count_points_in_polygon['cluster'])
+#plt.xlabel('GSS_CODE')
+#plt.ylabel('Point Count')
+#plt.title('Cluster Analysis of Point Counts in Polygons')
+#plt.show()
 
 # 查看聚类结果
 # print(count_points_in_polygon)
@@ -543,6 +517,49 @@ count_points_in_polygon.plot(color=colors, figsize=(10, 6))
 plt.scatter([], [], color='silver', label='non tourism borough')
 plt.scatter([], [], color='grey', label='tourism borough')
 plt.legend(title='Clusters')
+
+# 显示图表
+plt.show()
+```
+
+### pathway 3 Toutists Expenditure
+
+#### 数据读取
+
+```{python}
+expenditure_point = pd.read_csv('../data/updated_data.csv')
+selected_expenditure_point_columns = expenditure_point[['id','latitude', 'longitude', 'tourists_expenditure']]
+selected_expenditure_point_columns['latitude'] = pd.to_numeric(selected_expenditure_point_columns['latitude'], errors='coerce')
+selected_expenditure_point_columns['longitude'] = pd.to_numeric(selected_expenditure_point_columns['longitude'], errors='coerce')
+
+selected_expenditure_point_columns.dropna(inplace=True)
+# convert lat/long to GeoSeries (converted the InsideAirbnb data to a GeoDataFrame)
+expenditure_gdf = gpd.GeoDataFrame(selected_expenditure_point_columns, 
+      geometry=gpd.points_from_xy(selected_expenditure_point_columns.longitude, selected_expenditure_point_columns.latitude, crs='epsg:4326'))
+
+# plot and reproject it
+
+expenditure_gdf = expenditure_gdf.to_crs('epsg:27700')
+print(expenditure_gdf.crs)
+```
+
+```{python}
+expenditure_non = gpd.sjoin(expenditure_gdf, non_tourism_borough, predicate='within')
+# 确保两个 GeoDataFrame 使用相同的坐标参考系统
+expenditure_non = expenditure_non.to_crs(non_tourism_borough.crs)
+```
+
+#### Toutists Expenditure 结果 
+
+```{python}
+grouped_data = expenditure_non.groupby('GSS_CODE')['tourists_expenditure'].sum().reset_index()
+merged_data = borough.merge(grouped_data, on='GSS_CODE')
+merged_data.plot(column='tourists_expenditure', cmap='plasma_r', legend=True, figsize=(10, 6))
+
+# 添加标题和标签（可选）
+plt.title('Tourists Expenditure in Each Borough')
+plt.xlabel('Longitude')
+plt.ylabel('Latitude')
 
 # 显示图表
 plt.show()
