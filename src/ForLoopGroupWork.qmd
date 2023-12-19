@@ -271,6 +271,10 @@ df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_va
 (定量计算当地经济--local economy mutiplier )
 rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
 
+```{python}
+#
+```
+
 #### 计算
 * 房东收入 estimated_annual_income
 * 游客支出 tourists_expenditure
@@ -315,7 +319,7 @@ df_other[['estimated_annual_nights', 'estimated_annual_income']] = df_other[['es
 ```
 
 ```{python}
-df_other['local_or_company'].max()
+#df_other['local_or_company'].max()
 ```
 
 ```{python}
