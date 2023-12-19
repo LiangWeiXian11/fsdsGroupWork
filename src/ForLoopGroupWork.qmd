@@ -52,9 +52,9 @@ jupyter:
 
 We, [For loop], confirm that the work presented in this assessment is our own. Where information has been derived from other sources, we confirm that this has been indicated in the work. Where a Large Language Model such as ChatGPT has been used we confirm that we have made its contribution to the final submission clear.
 
-Date:
+Date: 2023/12/19
 
-Student Numbers: 
+Student Numbers: 23086875, 23191686, 23149976, 22084169, 23130396
 
 ## Brief Group Reflection
 
@@ -89,32 +89,30 @@ Are there any areas on which you would appreciate more detailed feedback if we'r
 # Response to Questions
 
 ## 1. Who collected the data?
-The data of listing of Airbnb used in the project is mainly collected by Inside Airbnb (Inside Airbnb 2023) . 
+The data of listing of Airbnb used in the project is mainly collected by Inside Airbnb (Inside Airbnb 2023)   <sup>1</sup>. 
 
 ## 2. Why did they collect it?
-The goal of IA, a mission-driven activist project, is to create a platform to support the advocacy of policies that protect our cities from the negative effects of short-term rentals and to provide data that quantifies the impact of long-term rentals on housing and residential communities.
+The goal of Inside Airbnb, a mission-driven activist project, is to create a platform to support the advocacy of policies that protect our cities from the negative effects of short-term rentals and to provide data that quantifies the impact of long-term rentals on housing and residential communities<sup>1</sup>.
 
 ## 3. How was the data collected?  
 The data used in the analysis were mainly from Inside Airbnb, which is independent. To be more specific, the website is not related to the official Airbnb site and is protected under a Creative Commons CC0 1.0 Universal (CCO 1.0) ‘Public Domain Dedication’ license. The data includes information such as the location, price, number of bedrooms, number of reviews, and other details about the listings. Moreover, the data from Inside Airbnb is typically collected through a combination of web scraping Airbnb's publicly available listings and analyzing this data for insights. Within Airbnb utilizes automated scripts to gather data from the Airbnb website in a methodical manner, with an emphasis on publicly accessible information from different listings.  Data is gathered via scraping and then assembled into a database.  This procedure involves organizing the data so that it can be easily analyzed and refining it by removing duplicates and fixing errors.
 
 ## 4. How does the method of collection impact the completeness and/or accuracy of its representation of the process it seeks to study, and what wider issues does this raise?
-According to the Airbnb project website (The Data, 2023), the location of a specific Airbnb on a map or in the data is 0 to 450 feet from the actual address because Airbnb listings’ location data is anonymized. As a result, minor errors may occur when plotting the locations of Airbnb. In addition, on the Inside Airbnb website, both booked and unavailable are classified into “unbookable nights” which may affect the calculation of occupancy rate because the availability of Airbnb is used in the algorithm in this study. Furthermore, the information supplied by Inside Airbnb represents a moment in time snapshot of the Airbnb listings which means that it is possible that some of the Airbnb listings in the dataset have been removed or that new listings have been added since the snapshots were taken. For instance, the accuracy of the review data obtained from Inside Airbnb dataset was questioned (Abdulkareem Alsudais, 2021) : The number of reviews associated with each listing in IA rises as a result of these instances of inaccurate data. There are very seldom instances where there are more false reviews associated with a listing than true and accurate reviews.
+According to the Airbnb project website (The Data, 2023)<sup>1</sup>, the location of a specific Airbnb on a map or in the data is 0 to 450 feet from the actual address because Airbnb listings’ location data is anonymized. As a result, minor errors may occur when plotting the locations of Airbnb. In addition, on the Inside Airbnb website, both booked and unavailable are classified into “unbookable nights” which may affect the calculation of occupancy rate because the availability of Airbnb is used in the algorithm in this study. Furthermore, the information supplied by Inside Airbnb represents a moment in time snapshot of the Airbnb listings which means that it is possible that some of the Airbnb listings in the dataset have been removed or that new listings have been added since the snapshots were taken. For instance, the accuracy of the review data obtained from Inside Airbnb dataset was questioned (Abdulkareem Alsudais, 2021)<sup>3</sup>: The number of reviews associated with each listing in IA rises as a result of these instances of inaccurate data. There are very seldom instances where there are more false reviews associated with a listing than true and accurate reviews.
 
 ## 5. What ethical considerations does the use of this data raise? 
 Use of Scraped Data:
 The ethics of web scraping for data collection are complex. While the data is publicly available, the process of scraping and republishing raises questions about consent and the appropriate use of publicly available information.
+
 Impact on Airbnb Hosts:
 Although Inside Airbnb claims that No "private" information is being used. Names, photographs, listings and review details are all publicly displayed on the Airbnb site. However, research conclusions based on crawling information may affect the normal operation of landlords.
+
 Data Accuracy and Misrepresentation:
 Inside Airbnb data scraped from websites may not always be accurate or up-to-date. Relying on such data for research or policy-making could lead to decisions based on incomplete or misleading information. 
 
 ## 6. With reference to the data (*i.e.* using numbers, figures, maps, and descriptive statistics), what does an analysis of Hosts and Listing types suggest about the nature of Airbnb lets in London? 
-
-::: {.duedate}
-
-### path 1.1 find local owner --diff Hosts
-区分 Hosts 房东类型 -- 聚类（中介&当地）
-(solution : number of house they have) {cluster 1}
+### 6.1 Identifying types of hosts
+In order to classified whether the host of Airbnb is local or not, a cluster analyse is used in the following.
 
 ```{python}
 import os
@@ -124,11 +122,7 @@ import seaborn as sns
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
-```
 
-#### 数据读取
-
-```{python}
 # loading data and data wrangling
 ## loading data
 df = pd.read_csv('../data/listings.csv', low_memory=False)
@@ -151,14 +145,12 @@ grouped_df1 = df1.groupby('host_id').sum()
 grouped_df1 = grouped_df1.reset_index().rename(columns={'ones': 'counts'})
 ```
 
-#### 聚类预处理 Gaussian Mixture Model 
+#### 6.2 Cluster Preprocessing - Gaussian Mixture Model
 
 ```{python}
 ## better know the characteristics of the data and find that maybe Gaussian Mixture Model fit the data
 # check data using Kernel Density Estimate (KDE) plot
-```
 
-```{python}
 # do clustering analysis using Gaussian Mixture Model 
 ## setting different n_components value sizes to produce different clusters analyses rationality
 from sklearn.mixture import GaussianMixture
@@ -178,18 +170,14 @@ grouped_df1['cluster'] = gmm.fit_predict(X)
 
 # Check the statistics for each cluster
 # print(grouped_df1.groupby('cluster')['counts'].describe())
-```
 
-```{python}
 ## maybe 595 is the outlier, so drop it and try different n_components value sizes
 # Find the index of the maximum value in the 'cluster' column
 max_index = grouped_df1['counts'].idxmax()
 
 # Delete this row
 grouped_df1 = grouped_df1.drop(max_index)
-```
 
-```{python}
 ## try the GMM to do clustering again
 # Convert the 'counts' column into a format suitable for clustering (two-dimensional array)
 X = grouped_df1[['counts']].values
@@ -207,15 +195,13 @@ grouped_df1['local_or_company'] = gmm.fit_predict(X)
 # print(grouped_df1.groupby('local_or_company')['counts'].describe())
 ```
 
-#### 聚类结果展示
+### 6.3 Cluster Results Presentation
 
 ```{python}
 ## Define based on facts
 # Replace values in the 'local_or_company' column that are equal to 0 and 2 with 1, and replace other values with 0
 grouped_df1['local_or_company'] = np.where(grouped_df1['local_or_company'] == 0|2, 1, 0)
-```
 
-```{python}
 ## plot again for visulisation and get the max acount of Airbnbs owned by local landlords
 # Set the plotting style
 sns.set(style="whitegrid")
@@ -243,17 +229,13 @@ plt.ylabel('the numeber of Airbnbs')
 # Display the legend and the chart
 plt.legend(title='The type of hosts')
 plt.show()
-```
 
-```{python}
 # Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
 df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
 # df.head(5)
 ```
 
-*  (optional) Listing 房源类型 -- 描述性统计--（暂定）
-
-#### 图表-- airbnb 的空间分布 （聚集或分散）
+### 6.4 Visualizing Spatial Distribution of Airbnb Listings
 
 ```{python}
 import geopandas as gpd
@@ -269,9 +251,7 @@ gdf_bor = gpd.read_file(shapefile_path)
 # Check the Projection and use the EPSG:27700 projected CRS
 #print(gdf_bor.crs)
 # gdf.to_crs('epsg:27700')
-```
 
-```{python}
 # convert lat/long to GeoSeries (converted the InsideAirbnb data to a GeoDataFrame)
 gdf_point = gpd.GeoDataFrame(df, 
       geometry=gpd.points_from_xy(df.longitude, df.latitude, crs='epsg:4326'))
@@ -300,13 +280,13 @@ gdf_point[gdf_point['local_or_company'] == 0].plot(ax=ax[0,1], color='orange', a
 gdf_point.plot(ax=ax[1,0], color=gdf_point['local_or_company'].map({1: 'green', 0: 'orange'}), alpha=0.3 ,markersize=1)
 
 # 添加标题和图幅标号
-ax[0,0].set_title('Airbnbs of Local Hosts Map in London')
+ax[0,0].set_title('Airbnbs of Local Hosts in London')
 ax[0,0].text(-0.1, 1.1, '(a)', transform=ax[0,0].transAxes)
 
-ax[0,1].set_title('Airbnbs of Company Map in London')
+ax[0,1].set_title('Airbnbs of Company in London')
 ax[0,1].text(-0.1, 1.1, '(b)', transform=ax[0,1].transAxes)
 
-ax[1,0].set_title('Airbnbs Map in London')
+ax[1,0].set_title('Airbnbs in London')
 ax[1,0].text(-0.1, 1.1, '(c)', transform=ax[1,0].transAxes)
 
 # Set the x and y limits
@@ -360,44 +340,60 @@ def draw_north_arrow(ax, x, y, arrow_length=0.1, text='N'):
 draw_north_arrow(ax[1, 1], x=0.95, y=0.05)
 
 # 设置整体标题
-fig.suptitle('Airbnbs Maps in London')
+fig.suptitle('Airbnbs Map in London')
 
 # 保存图形
 
 plt.show()
 ```
 
-( 15 points; Answer due {{< var assess.group-date >}} )
+The spatial map above shows the distributions of different types of hosts. For instance, it can be viewed that most of the hosts of London Airbnb are local. In addition, the distribution of Local hosts and company host are similar which is they are gathering near the center of London.
 
-:::
+```{python}
+import pandas as pd
+
+def summarize_room_types():
+    # Load the CSV file directly using the file name
+    data = pd.read_csv('../data/listings.csv')
+
+    # Calculate the count and percentage of each room type
+    room_type_summary = data['room_type'].value_counts().to_frame()
+    room_type_summary.columns = ['Count']
+    room_type_summary['Percentage'] = (room_type_summary['Count'] / room_type_summary['Count'].sum()) * 100
+
+    return room_type_summary
+
+# Generate the summary and print it
+summary = summarize_room_types()
+print(summary)
+```
+
+The table above shows the percentage of different types of Airbnb in London. It can be observed that the type of "Entire home" owns the highest proportion. As a result, as indicated by several researches, the decrease of long-term rental markets are decreased and the rental prices increase. To reduce the impact of short-term rental to long-term rental, a 90 days limited policy was published which serves to prevent long-term rental properties from being turned into year-round vacation rentals and keeps them accessible for locals.
 
 ## 7. Drawing on your previous answers, and supporting your response with evidence (e.g. figures, maps, and statistical analysis/models), how *could* this data set be used to inform the regulation of Short-Term Lets (STL) in London? 
 
-::: {.duedate}
+In our study, we wanted to determine the influence of Airbnb to non-tourism areas. Therefore, the local economy is calculated which contains tourist expenditure and landlord feedback economy is determined in the following trunks. An "Occupancy rate" model carried out from research made by the Budget and Legislative Analyst’s Office in San Francisco using the data from Inside Airbnb is mainly used.
 
-
-### 计算当地经济  path 1 economy 
-(定量计算当地经济--local economy mutiplier )
-rental per night (column) --{algorithm 1}--> diff owner's income --{algorithm 2}--> economy by areas 
-
-```{python}
-#
-```
-
-#### 计算
-* 房东收入 estimated_annual_income
-* 游客支出 tourists_expenditure
+### 7.1 Tourist expenditure calculation
 
 ```{python}
 # Assuming DataFrame is named 'df'
 # Replace 'df' with the actual name of your DataFrame variable
 
 import re
+```
 
+The review rate and the average stay nights are set to be 50% and 3 days respectively<sup>1</sup>.
+
+```{python}
 # Setting the model parameters
 review_rate = 0.5
 average_days = 3
+```
 
+Furthermore, the trunk below first calculated the quantity of tourists of each Airbnb annually (assumption had been made that one bed for one person) with the "Occupancy rate" model and then multiply with a spend coefficient (43 pounds) which carried out by a research by Airbnb<sup>4</sup> "The average Airbnb visitor in the UK spends £100 a day, of which 43% is spent in the neighborhood where they are staying."
+
+```{python}
 # Selecting listings where availability_365 is greater than 0
 df_geq_0 = df[df.availability_365 > 0]
 
@@ -425,13 +421,9 @@ df_other.loc[df.availability_365 > 0, 'estimated_annual_income'] = df_other['est
 
 # Filling any missing values in both new columns with 0
 df_other[['estimated_annual_nights', 'estimated_annual_income']] = df_other[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
-```
 
-```{python}
 #df_other['local_or_company'].max()
-```
 
-```{python}
 # Extract the number of beds from the 'name' column.
 def extract_beds(name):
     match = re.search(r'(\d+)\s+beds?', name)
@@ -444,11 +436,13 @@ df_other['tourists_expenditure'] = df_other['number_of_beds'] * df_other['estima
 #df_other.head(4)
 ```
 
-#### 模型 local economic multiplier -- LM3(London)
+### 7.2 Local economic multiplier calculation
+
+A LM3 model is applied which assumed that When 1 pound is spent with a local vendor, the local economy benefits by 1.76 pounds, but only by 36 pence when it is spent elsewhere<sup>5</sup>.
 
 ```{python}
 # applying local economic multiplier
-# 模型参数
+# Model coefficient
 coef1 = 1.76
 coef2 = 0.36
 
@@ -469,11 +463,9 @@ df_other['local_economy_contribution_from_airbnb'] = df_other['local_economy_con
 # df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
 ```
 
-### 旅游区聚类  path 2 tourism areas
-number of tourism destination + boundary in london --{cluster 2}--> by number of tourism destination by per areas --> 
-（根据每个旅游区的旅游景点数量，划分旅游区和非旅游区）
+### 7.3 Cluster for tourism borough and non-tourism borough
 
-:::
+Spatial data of London's attractions were acquired using OSM and mapped on the boundaries of London borough. The number of attractions contained in each borough was analyzed by clustering to distinguish non-tourist boroughs. As shown in the Figure，Lambeth, Southwark, Richmond upon Thames, Kensington and Chelsea, Westminster, Camden, and Tower Hamlets own more tourist attracions，therefore they are classified as tourist area and the other boroughs are classified as non-tourist areas. The later analysis mainly focus on the impact of airbnb visitors to non-tourist areas.
 
 ```{python}
 # package
@@ -484,25 +476,25 @@ import geopandas as gpd
 import pandas as pdpip
 ```
 
-#### 数据读取
-
 ```{python}
-# Shapefile 路径
+## Read London borough boundary 
+
 shapefile_path = '../data/London_Borough_Excluding_MHW/London_Borough_Excluding_MHW.shp'
 
-# 数据读取
 file_path = '../data/export.geojson'
-# 读取 GeoJSON 文件
+
+# load GeoJSON file
 with open(file_path, 'r', encoding='utf-8') as file:
     geojson_data = json.load(file)
-# 准备一个列表来存储点坐标
+    
+# Create a list to store coordinate
 point_coordinates = []
 
-# 遍历特征集合中的每个特征--并用列表进行存储
+# Iterate over each feature in the feature set
 for feature in geojson_data.get('features', []):
-    # 检查几何类型是否为点
+    # Check whether the geometry type is a point
     if feature['geometry']['type'] == 'Point':
-        # 提取坐标
+        # Extract coordinates
         coordinates = feature['geometry']['coordinates']
         point_coordinates.append(coordinates)
 ```
@@ -510,130 +502,118 @@ for feature in geojson_data.get('features', []):
 ```{python}
 points = [Point(x, y) for x, y in point_coordinates]
 
-# 创建一个 DataFrame
+# create DataFrame
 df = pd.DataFrame(point_coordinates, columns=['Longitude', 'Latitude'])
 
-# 使用 DataFrame 和 Points 创建 GeoDataFrame
+# use DataFrame and Points create GeoDataFrame
 attraction_gdf = gpd.GeoDataFrame(df, geometry=points)
 ```
 
 ```{python}
-# 加载 Shapefile
+# load Shapefile
 borough = gpd.read_file(shapefile_path)
 attraction_gdf.set_crs(epsg=4326, inplace=True)
-# 确保两个 GeoDataFrame 使用相同的坐标参考系统
+
+# Ensure use the same cr
 attraction_gdf = attraction_gdf.to_crs(borough.crs)
 ```
 
-#### 景点数量统计
-通过空间连接，统计每个borough内部的景点数量
-
 ```{python}
-# 景点数量统计
-# 使用空间连接来统计每个多边形包含的点数
+# Calculate the number of attraction points contained in each borough
+
+
+# Use spatial joins to count the number of points each borough contains
 point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
-# 计算每个多边形包含的点数
+
+# Calculate the number of points contained in each borough
 count_points_in_polygon = point_in_polygon.groupby('GSS_CODE').size().reset_index(name='point_count')
 
-# 执行空间连接
+# spatial join
 point_in_polygon = gpd.sjoin(attraction_gdf, borough, how='inner', op='within')
 
-# 对连接结果进行分组统计
+# groupby borough and count
 count_points = point_in_polygon.groupby('GSS_CODE').size()
 
-# 将计数结果转换为 DataFrame，并重置索引
+# Converts the count result to a DataFrame and resets the index
 count_points_df = count_points.reset_index(name='point_count')
 
-# 保证所有多边形都包含在统计结果中
+# Ensure that all polygons are included in the statistics
 count_points_in_polygon = borough.merge(count_points_df, on='GSS_CODE', how='left')
 
-# 将未包含点的多边形的点数设为零
+# Sets the number of points for polygons that do not contain points to zero
 count_points_in_polygon['point_count'].fillna(0, inplace=True)
 
-# 显示结果
+# print
 # print(count_points_in_polygon[['GSS_CODE', 'point_count']])
 ```
 
-####  Visualization
-展示每个borough内部的景点数量
-
 ```{python}
-# 假设 count_points_in_polygon 是您的 GeoDataFrame
-# count_points_in_polygon 应该包含一个名为 'point_count' 的列
-# 使用 'point_count' 列的值来设置颜色映射
-# 'plasma' 是一个由浅至深的颜色映射，您可以根据需要选择其他颜色映射
-count_points_in_polygon.plot(column='point_count', cmap='plasma', legend=True, figsize=(10, 6))
+# Attraction count cluster analysis
 
-# 添加标题和标签（可选）
-plt.title('Visualization by Point Count')
-plt.xlabel('Longitude')
-plt.ylabel('Latitude')
 
-# 显示图表
-plt.show()
-```
-
-```{python}
-# 提取 point_count 作为聚类的特征
+# Extract the point count as the clustering feature
 X = count_points_in_polygon[['point_count']].values
 
-# 选择聚类的数量
 n_clusters = 3
 
-# 创建 KMeans 实例并拟合数据
-kmeans = KMeans(n_clusters=n_clusters)
+kmeans = KMeans(n_clusters=n_clusters, random_state=44)
 kmeans.fit(X)
 
-# 将聚类标签添加到原始 DataFrame
+# Adds the cluster tag to the original DataFrame
 count_points_in_polygon['cluster'] = kmeans.labels_
 
-# 找到最小 point_count 的索引
+# Find the index with the smallest point count
 min_point_count_cluster = kmeans.labels_[np.argmin(X)]
 
-# 重新分配聚类标签，使最小 point_count 的聚类为 2
+# Reassign the cluster label so that the cluster of minimum point_count is 1
 count_points_in_polygon['cluster'] = [(label + 1 if label >= min_point_count_cluster 
                                        else label) for label in count_points_in_polygon['cluster']]
 count_points_in_polygon['cluster'] = count_points_in_polygon['cluster'].replace(min_point_count_cluster, 1)
-
-
-
-# 可视化聚类结果（如果适用）
-#plt.scatter(count_points_in_polygon['GSS_CODE'], count_points_in_polygon['point_count'], c=count_points_in_polygon['cluster'])
-#plt.xlabel('GSS_CODE')
-#plt.ylabel('Point Count')
-#plt.title('Cluster Analysis of Point Counts in Polygons')
-#plt.show()
-
-# 查看聚类结果
-# print(count_points_in_polygon)
 ```
 
-#### 聚类 区分 旅游区 & 非旅游区
-按照每个borough的旅游景点数量，划分旅游区和非旅游区
-
 ```{python}
-non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 1]
-# 假设 count_points_in_polygon 是您的 GeoDataFrame
-# count_points_in_polygon 应该包含一个名为 'cluster' 的列
+# Borough Attraction Count visualization
 
-# 设置颜色：cluster 等于 3 为一种颜色，其余为另一种颜色
+# Use the value of the 'point count' column to set the color map
+count_points_in_polygon.plot(column='point_count', cmap='plasma_r', legend=True, figsize=(10, 6))
+
+# Add titles and labels
+plt.title('Borough Attraction Count')
+plt.xlabel('X Coordinate')
+plt.ylabel('Y Coordinate')
+
+
+plt.show()
+
+# Cluster plot
+
+# Set color: cluster equals 1 for one color and the rest for another color
 colors = count_points_in_polygon['cluster'].map(lambda x: 'silver' if x == 1 else 'grey')
 
-# 绘制 GeoDataFrame
+
 count_points_in_polygon.plot(color=colors, figsize=(10, 6))
 
-# 添加图例（可选）
+plt.xlabel('X Coordinate')
+plt.ylabel('Y Coordinate')
 plt.scatter([], [], color='silver', label='non tourism borough')
 plt.scatter([], [], color='grey', label='tourism borough')
 plt.legend(title='Clusters')
 
-# 显示图表
+
 plt.show()
 ```
 
-### pathway 3 Toutists Expenditure
+```{python}
+# Select non tourism boroughs
 
-#### 数据读取
+non_tourism_borough = count_points_in_polygon[count_points_in_polygon['cluster'] == 1]
+```
+
+In conclusion, the graph above shows the tourism borough and non-tourism borough.
+
+### 7.4 Local economy plotting
+
+The following part uses graphs to show the local economy which brings by the Airbnb to London goroughs.
 
 ```{python}
 expenditure_point = pd.read_csv('../data/updated_data.csv')
@@ -650,17 +630,11 @@ expenditure_gdf = gpd.GeoDataFrame(selected_expenditure_point_columns,
 
 expenditure_gdf = expenditure_gdf.to_crs('epsg:27700')
 print(expenditure_gdf.crs)
-```
 
-```{python}
 expenditure_non = gpd.sjoin(expenditure_gdf, non_tourism_borough, predicate='within')
 # 确保两个 GeoDataFrame 使用相同的坐标参考系统
 expenditure_non = expenditure_non.to_crs(non_tourism_borough.crs)
-```
 
-#### Toutists Expenditure 结果 
-
-```{python}
 grouped_data = expenditure_non.groupby('GSS_CODE')['tourists_expenditure'].sum().reset_index()
 merged_data = borough.merge(grouped_data, on='GSS_CODE')
 merged_data.plot(column='tourists_expenditure', cmap='plasma_r', legend=True, figsize=(10, 6))
@@ -672,37 +646,29 @@ plt.ylabel('Latitude')
 
 # 显示图表
 plt.show()
-```
 
-### 按borough经济可视化
-
-```{python}
 # df_economy 经济列
 # count_points_in_polygon
 
 borough_result = gpd.read_file(shapefile_path)
 gdf_result = gpd.GeoDataFrame(borough_result, geometry='geometry')
-```
 
-```{python}
 # df_other 
 # 32
 # -- neighbourhood
 # gdf_result
 # 32
-```
 
-```{python}
 # 使用 'id' 字段连接 DataFrame 和 GeoDataFrame
 merged_gdf = gdf_result.merge(df_other, left_on='NAME', right_on = 'neighbourhood')
 
 # 显示连接后的 GeoDataFrame
 type(merged_gdf)
-```
 
-```{python}
 merged_gdf.plot(column='local_economy_contribution_from_airbnb', cmap='Blues', legend=True, figsize=(10, 6), linewidths=0.1, edgecolor='grey')
 ```
+
+A spatial map is provided which shows the influence of local economy of non-tourism from Airbnb. It can be viewed that non-tourism boroughs near tourism boroughs tends to have higher rate of economy contribution rate. Therefore, it can be adviced that the 90-days limit policy can be extended for some non-tourism areas because some short-term rental Airbnb can contribute to local economy.
 
 ## Sustainable Authorship Tools
 
@@ -711,3 +677,15 @@ Your QMD file should automatically download your BibTeX file. We will then re-ru
 Written in Markdown and generated from [Quarto](https://quarto.org/). Fonts used: [Spectral](https://fonts.google.com/specimen/Spectral) (mainfont), [Roboto](https://fonts.google.com/specimen/Roboto) (<span style="font-family:Sans-Serif;">sansfont</span>) and [JetBrains Mono](https://fonts.google.com/specimen/JetBrains%20Mono) (`monofont`). 
 
 ## References
+
+1. Inside Airbnb. Available at: http://insideairbnb.com/get-the-data/ (Accessed: 18 December 2023). 
+
+```{python}
+2. 
+```
+
+3. Abdulkareem Alsudais (2021) ‘Incorrect data in the widely used Inside Airbnb dataset’.
+
+4. (No date a) Airbnb UK insights report - airbnb citizen. Available at: https://www.airbnbcitizen.com/wp-content/uploads/2018/10/AirbnbUKInsightsReport_2018.pdf (Accessed: 19 December 2023). 
+
+5. About LM3 (no date) LM3 Online. Available at: https://www.lm3online.com/about (Accessed: 19 December 2023). 
