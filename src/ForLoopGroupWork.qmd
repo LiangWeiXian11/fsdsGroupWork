@@ -174,10 +174,10 @@ gmm = GaussianMixture(n_components=2, random_state=0)
 grouped_df1['cluster'] = gmm.fit_predict(X)
 
 # View the clustering results
-print(grouped_df1.head())
+# print(grouped_df1.head())
 
 # Check the statistics for each cluster
-print(grouped_df1.groupby('cluster')['counts'].describe())
+# print(grouped_df1.groupby('cluster')['counts'].describe())
 ```
 
 ```{python}
@@ -201,10 +201,10 @@ gmm = GaussianMixture(n_components=3, random_state=0)
 grouped_df1['local_or_company'] = gmm.fit_predict(X)
 
 # View the clustering results
-print(grouped_df1.head())
+# print(grouped_df1.head())
 
 # Check the statistics for each cluster
-print(grouped_df1.groupby('local_or_company')['counts'].describe())
+# print(grouped_df1.groupby('local_or_company')['counts'].describe())
 ```
 
 #### 聚类结果展示
@@ -248,8 +248,7 @@ plt.show()
 ```{python}
 # Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
 df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
-df.head(5)
-df.to_csv('testBefore.csv', index=False)
+# df.head(5)
 ```
 
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
@@ -305,8 +304,6 @@ df_other.loc[condition, 'estimated_annual_nights'] = estimated_nights
 #) * df_geq_0.availability_365
 
 
-df_other.to_csv('testAfter2.csv', index=False)
-
 # Setting estimated annual income to 0 for listings with availability_365 equals 0
 df_other.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
 
@@ -319,7 +316,6 @@ df_other[['estimated_annual_nights', 'estimated_annual_income']] = df_other[['es
 
 ```{python}
 df_other['local_or_company'].max()
-df_other.to_csv('test1.csv', index=False)
 ```
 
 ```{python}
@@ -332,7 +328,7 @@ df_other['number_of_beds'] = df['name'].apply(extract_beds)
 
 # Calculate 'tourists_expenditure'
 df_other['tourists_expenditure'] = df_other['number_of_beds'] * df_other['estimated_annual_nights'] * 100
-df_other.head(4)
+#df_other.head(4)
 ```
 
 #### 模型 local economic multiplier -- LM3(London)
@@ -355,7 +351,7 @@ df_other['value_to_local_economy'] = df_other['tourists_expenditure'] * 0.43 + d
 df_other = df_other.groupby('neighbourhood')['value_to_local_economy'].sum().reset_index(name='local_economy_contribution_from_airbnb')
 df_other['local_economy_contribution_from_airbnb'] = df_other['local_economy_contribution_from_airbnb'].round(2)
 
-df_other.head(4)
+# df_other.head(4)
 # Generate a new CSV file to display the local economy contribution from Airbnb tourism for each borough.
 # df.to_csv('local_economy_contribution_from_airbnb_tourism.csv', index=False)
 ```
