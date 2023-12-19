@@ -271,6 +271,7 @@ plt.show()
 # Process the original dataset df by selecting rows where the 'calculated_host_listings_count' column is less than or equal to the max_value_in_local_hosts value and set a new 'local_or_company' column with 1 (1 represents local landlords, 0 represents companies)
 df['local_or_company'] = np.where(df['calculated_host_listings_count'] <= max_value_in_local_hosts_GMM, 1, 0)
 df.head(5)
+df.to_csv('testBefore.csv', index=False)
 ```
 
 *  (optional) Listing 房源类型 -- 描述性统计--（暂定）
@@ -310,18 +311,36 @@ average_days = 3
 df_geq_0 = df[df.availability_365 > 0]
 
 df_other = df
+
+df_other = df_other.drop('neighbourhood_group', axis=1)
 # Calculating estimated annual nights
-df_other.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
+df_other.to_csv('testAfter.csv', index=False)
+condition = df.availability_365 > 0
+estimated_nights = (
     (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
 ) * df_geq_0.availability_365
+df_other.loc[condition, 'estimated_annual_nights'] = estimated_nights
+
+#df_other.loc[df.availability_365 > 0, 'estimated_annual_nights'] = (
+#    (df_geq_0.reviews_per_month / review_rate * average_days * 12) / 365
+#) * df_geq_0.availability_365
+
+
+df_other.to_csv('testAfter2.csv', index=False)
+
 # Setting estimated annual income to 0 for listings with availability_365 equals 0
 df_other.loc[df.availability_365 == 0, 'estimated_annual_income'] = 0
 
 # Calculating estimated annual income
-df_other.loc[df.availability_365 > 0, 'estimated_annual_income'] = df['estimated_annual_nights'] * df_geq_0.price
+df_other.loc[df.availability_365 > 0, 'estimated_annual_income'] = df_other['estimated_annual_nights'] * df_geq_0.price
 
 # Filling any missing values in both new columns with 0
-df_other[['estimated_annual_nights', 'estimated_annual_income']] = df[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+df_other[['estimated_annual_nights', 'estimated_annual_income']] = df_other[['estimated_annual_nights', 'estimated_annual_income']].fillna(0)
+```
+
+```{python}
+df_other['local_or_company'].max()
+df_other.to_csv('test1.csv', index=False)
 ```
 
 ```{python}
